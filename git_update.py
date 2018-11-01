@@ -1,44 +1,29 @@
-import json
-import os
+from json import loads
+from os import system
 
 def main():
     data = getData()
     if data:
-        toUpdate = cloneNew(data["repos"])
-        updateExisting(toUpdate)
+        updateTrees(data["repos"])
+
 
 def getData():
     file = open("data.json")
     info = "".join(str(x) for x in file.readlines())
     file.close()
     try:
-        info = json.loads(info)
+        info = loads(info)
     except:
         print("Something went wrong reading file")
         info = None
     return info
 
-def cloneNew(repos : list):
-    local = os.listdir(".")
-    existing = []
+def updateTrees(repos : list):
     for i in range(len(repos)):
-        if not repos[i]["repo"] in local:
-            print("\n\n", repos[i]["repo"], ":", sep="")
-            os.system("git clone https://github.com/%s/%s" % (repos[i]["owner"], repos[i]["repo"]))
-        else:
-            existing.append(repos[i])
-    return existing
+            print("\n\n", repos[i]['prefix'])
+            system("git subtree pull --prefix=%s %s master" % (repos[i]['prefix'], repos[i]['remote']))
 
 
-def updateExisting(repos):
-    local = os.listdir(".")
-    for i in range(len(repos)):
-        if repos[i]["repo"] in local:
-            print("\n\n", repos[i]["repo"], ":", sep="")
-            os.chdir(repos[i]["repo"])
-            os.system("git pull")
-            os.chdir("../")
-        else:
-            print("Could not update: %s" % repos[i]["repo"])
+
 main()
 

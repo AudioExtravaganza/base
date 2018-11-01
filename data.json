@@ -1,12 +1,12 @@
 {
     "repos": [
         {
-            "owner": "AudioExtravaganza",
-            "repo" : "requirements"
+            "prefix": "requirements",
+            "remote" : "requirements"
         },
         {
-            "owner": "AudioExtravaganza",
-            "repo" : "problem_statement"
+            "prefix": "problem_statement",
+            "remote" : "problem_statement"
         }
     ]
 }
