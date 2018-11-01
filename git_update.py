@@ -19,12 +19,12 @@ def getData():
     return info
 
 def updateTrees(repos : list):
+    system("git add -A")
+    system("git commit -m \"Pre import\"")
     for i in range(len(repos)):
             print("\n\n", repos[i]['prefix'])
             system("git subtree pull --prefix=%s %s master" % (repos[i]['prefix'], repos[i]['remote']))
-    system("git add -A")
-    system("git commit -m \"Importing from subtrees\"")
-
+    
 
 main()
 
