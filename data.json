@@ -1,0 +1,12 @@
+{
+    "repos": [
+        {
+            "owner": "AudioExtravaganza",
+            "repo" : "requirements"
+        },
+        {
+            "owner": "AudioExtravaganza",
+            "repo" : "problem_statement"
+        }
+    ]
+}
