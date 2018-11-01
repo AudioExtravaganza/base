@@ -1,0 +1,40 @@
+
+%5 weeks in fall left, 10 per other terms
+
+\begin{ganttchart}[vgrid, hgrid]{1}{25}
+        \gantttitle{Audio Extravaganza Gantt Chart}{25} \\
+        \gantttitle{Fall}{5}            
+        \gantttitle{Winter}{10}
+        \gantttitle{Spring}{10} \\
+        
+        \ganttgroup{R \& D}{1}{5} \\
+            \ganttbar[name=r1]{Tech. Reviews}{1}{2} \\
+            \ganttbar[name=r2]{Design Document}{3}{5} \ganttnewline
+            \ganttmilestone[name=r3]{Client Verification}{5} \ganttnewline
+        \ganttgroup{Implementation}{2}{15} \\
+            \ganttbar[name=i1]{Sand Boxing}{2}{3} \\
+            \ganttbar[name=i2]{Prototyping Effects}{4}{5} \ganttnewline
+            \ganttbar[name=i3]{Initial Effects}{6}{11} \ganttnewline
+            \ganttbar[name=i4]{Looping Framework}{6}{11} \ganttnewline
+            \ganttbar[name=i5]{VST Initial Package}{12}{15} \ganttnewline
+        \ganttgroup{Embedding}{13}{22} \\
+            \ganttbar[name=e1]{OS Install}{13}{15} \\
+            \ganttbar[name=e2]{DAC Install}{16}{17} \ganttnewline
+            \ganttbar[name=e3]{VST Embedding}{18}{20} \ganttnewline
+            \ganttbar[name=e4]{Hardware Interfaces}{21}{22}\ganttnewline
+        
+        \ganttmilestone[name=expo]{Expo}{23}
+        
+        \ganttlink{r1}{r2}
+        \ganttlink{r2}{r3}
+        \ganttlink{i1}{i2}
+
+        \ganttlink{i3}{i5}
+        \ganttlink{i4}{i5}
+        \ganttlink{i5}{e3}
+        \ganttlink{e1}{e2}
+        \ganttlink{e3}{e4}
+        \ganttlink{e2}{e3}
+        \ganttlink{r1}{r2}
+        \ganttlink{e4}{expo}
+    \end{ganttchart}

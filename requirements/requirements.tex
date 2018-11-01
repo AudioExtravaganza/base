@@ -1,0 +1,127 @@
+\section{Specific Requirements}
+
+\subsection{External Interfaces}
+% martin
+One stretch goal of our project is to implement an external mobile interface which the user can use to communicate with the effects pedal. This interface would either be a mobile application or website which would connect to the user's pedal over USB (\ref{USB}), Bluetooth, or WiFi connection. The external interface would allow the user to edit and save presets for the available effects supported by the pedal, which could then be transferred to the pedal. These presets would store information on a certain effect, such as options for looping control of time / delay / chaining of other effects. 
+
+\subsection{Functions}
+% Mason and Martin
+        % Add plug and play
+    \subsubsection{Base System}
+    \begin{enumerate}[label=\alph*.]
+        \item The system shall convert all incoming audio signals to a digital signal via DAC (\ref{DAC}). % This may fall under hardware
+        \item The system shall convert all outgoing audio signals to an analog signal via DAC (\ref{DAC}).
+        \item The system shall allow input from external devices, like a MIDI (\ref{MIDI}) controller, via USB.
+        \item The system shall map a function to each hardware interface.
+        \item The system shall display pertinent information via an LCD (\ref{LCD}) screen.
+        \item The system shall start all subsystems on power up.
+    \end{enumerate}
+    
+    \subsubsection{Looping Sub System}
+        \begin{enumerate}[label=\alph*.]
+            \item The system shall allow users to start and stop recording input via a pedal.
+            \item The system shall allow users to start and stop playback via a pedal interface.
+            \item The system shall allow users to toggle recording or playback via a pedal.
+            \item The system shall alert users of the state of each playback bank via an indicator LED (\ref{LED}).
+            %Can change # here
+            \item The system shall cache up to 4 recordings, for toggling with pedals.
+            
+            \item The system shall allow users to save recording presets for retrieval later.
+            %   Maybe
+            \item The system shall allow users to select an interval in beats per minute to quantize recordings.
+            % Similar to a launch pad behavior
+            \item The system shall allow users the queue output to play on the next measured interval.
+
+        \end{enumerate}
+    
+    \subsubsection{Modulation Sub System}
+    \begin{enumerate}[label=\alph*.]
+        \item The system shall allow users to select effects to toggle for each pedal.
+        \item The system shall allow users to load effect presets.
+        \item The system shall allow users to modify effect parameters.
+        \item The system shall allow users to save modifications as a preset.
+    \end{enumerate}
+    
+    \subsubsection{Stretch Functionality}
+    \begin{enumerate}[label=\alph*.]
+        \item The user shall be able to create their own effects and patches on an external device.
+        \item The user shall be able to upload their effects and patches from an external device.
+        \item The user shall be able to download saved looper recordings as files to an external device.
+        \item The user shall be able to upload recordings from an external device.
+    \end{enumerate}
+
+\subsection{Usability Requirements}
+% Alex and Devon
+% Measurable effectiveness, efficiency, and satisfaction requirements
+    \begin{enumerate}[label=\alph*.]
+        \item The system should require no additional configuration on boot, and be ready to function within 2.5 seconds. % Give us a bit of a buffer around our ideal 1 second boot
+        \item The hardware enclosure should be designed in a way to not destroy the system when kicked, dropped, or stored. % Able to survive wear and tear (perhaps 25 pounds of force?)
+        \item All hardware and software controls should be labelled with the name and state of the variable they modify.
+        \item Any selection hierarchies in the control system should be three levels or less.
+        \item Users should be able to locate and select known effects within 10 seconds. % Generous time constraint -- we can restrict it later if need be
+        \item Users should be able to create and deploy a scene of already selected effects within 10 seconds.
+        \item Users should be able to interact with the looping system without modifying currently applied effects.
+        \item All hardware and software controls should have perceivable effects within 250 ms of giving it an input.
+        % User opinion/perception
+        \item Minimum 80\% of users should report a pleasant user experience.
+        % Memorability
+        \item Minimum 80\% of users should display evidence of retaining aptitude between test sessions.
+        % Learnability
+        \item Inexperienced users should show a minimum 20\% increase in speed each time a task is repeated.
+        
+    \end{enumerate}
+
+\subsection{Performance Requirements}
+% Ben and Devon
+% Here are a couple metrics to think about - Devon
+Some requirements that can be attached to the performance aspect of our product are vital, due to the very performance nature of our project. Regarding the looping aspect of our product, we must limit the latency (input-to-output) delay to a unnoticeable level, and uniformly for bypassed, engaged, and high-processing modes. While we do not have a reasonable estimate for the amount of loop layers to include, we are ambitious and wish for that to be a simple scale to increase upon. \\
+In regards to the effects, we can require two concurrent effects to run without any incurred latency, and we can require a deterministic effect configuration, such that the same input parameters produce the same output parameters (this does account for the variance in input signal from different kinds of sources). \\
+Another realm of requirement is in the mobility and encasing of our product. The mobility and stability should be comparable to similar effects, and the setup time should be similar as well, such that a user is not prohibited by their ability to quickly move, use, and apply pressure to the product. \\
+In the event that we can implement an external interface, it should follow similar requirement guidelines to the rest of the product. There should be little latency, and file transfer and upload should be achieved at a high rate. 
+%Looper:
+ %   delay compensation
+  %  Less than x ms of delay
+   % up to x number of overdubs?
+% Effects:
+%     Apply x number of effects concurrently without delay
+%     Bypass delay limit?
+%     Maintain and apply x configurations
+%     Finish with x number of effects
+% Pedal Enclosure:
+%     Withstand x amount of force
+%     Fit within a pre-determined volume
+% Stretch: External Interface:
+%     Allow file transfer at a high(?) rate
+%     Ms delay for live control?
+    
+    
+
+\subsection{Design Constraints}
+% Ben and Mason
+% Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations
+    \begin{enumerate}[label=\alph*.]
+        \item The monetary cost of the final product should be under \$200 USD to maintain its viability as a cheaper alternative.
+        \item The hardware input will be constrained by the number of GPIO (\ref{GPIO}) pins available on the board. Digital Audio Converter, and LCD display will use a fair amount for output.
+        \item The number of concurrent effects will be constrained by the processing power of the single-board computer that is used.
+        \item The size of the product will be constrained to portability standards.
+        \item The ports for external input -- audio signals, MIDI (\ref{MIDI}) signals, etc. -- will be constrained by industry standards for input.
+    \end{enumerate}
+
+\subsection{Software System Attributes}
+% Alex and Devon
+% Performance metrics section of problem statement
+    \begin{enumerate}[label=\alph*.]
+        \item The final product should be able to perform without any errors when in use.
+        \item Interfacing with our product should be easy to understand for both people new to the product, and those who are experienced in the field.
+        \item The MSRP (\ref{MSRP}) of the final product should be affordable for people new to the world of music technology.
+        \item The final product will need a lightweight operating system in order to allow for quick startup, and maximize hardware performance.
+    \end{enumerate}
+
+%\subsection{Supporting Information}
+%There are several options available for us for a variety of different aspects for this project.
+%The following scenarios are not requirements for what we will use in our final product, but instead serve as a reference in our options on receive and send audio signals while processing them.
+    %\begin{enumerate}[label=\alph*.]
+        %\item For our input/output connectors, we have options that are common in the professional sphere, such as the 1/4 inch cable, XLR cable, or an input that supports both of these input/output connections.
+        %\item Our single-board computer can also vary from a general purpose system such as a Raspberry Pi or Arduino to an easily modifiable, but less user friendly, FPGA (\ref{FPGA}).
+    %\end{enumerate}
+% Re-evaluate after most of document is done as a team
