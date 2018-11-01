@@ -1,0 +1,126 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{Audio Extravaganza}
+\def \CapstoneTeamNumber{26}
+\def \GroupMemberOne{Martin Barker}
+\def \GroupMemberTwo{Devon Cash}
+\def \GroupMemberThree{Alexander Niebur}
+\def \GroupMemberFour{Mason Sidebottom}
+\def \GroupMemberFive{Ben Windheim}
+\def \CapstoneProjectName{Audio Extravaganza}
+\def \CapstoneSponsorCompany{Oregon State University}
+\def \CapstoneSponsorPerson{Kristen Winters}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{Problem Statement
+  %Requirements Document
+  %Technology Review
+  %Design Document
+  %Progress Report
+  }
+
+\newcommand{\NameSigPair}[1]{\par
+  \makebox[2.75in][r]{#1} \hfil \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+  \makebox[2.75in]{} \hfil\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+      %\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group \CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+                \NameSigPair{\GroupMemberFour}\par
+                \NameSigPair{\GroupMemberFive}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract    
+          The Audio Extravaganza project is a unique effort to help create a useful tool for musicians. There are a wide variety of barriers for creators and consumers alike in the music industry, ranging from financial means to technical expertise. This project aims to help all people interested in the creation of music be able to create unique sounds in an accessible format. Our team proposes to build a modular effects pedal that users can interface with to generate unique sounds while cultivating a captivating experience. To complete this task, our project will be divided into three main stages. Research, implementation, and embedding. The success of our product will be contingent on each of these stages. To measure the completeness and success of our product, we will evaluate it on a the variety of metrics, including but not limited to: efficiency, quality, cost, usability, and user retention.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{Problem Statement}
+\subsection{Problem}
+    The Audio Extravaganza project is centered around the creation of an impressive, manipulatable, and intuitive tool to aid in the performance arts by creating an iconic effect in real time.
+    When compared to other projects in the set of Oregon State University Computer Science Capstone projects, it is extremely unique, especially because the requirements and objectives are very open-ended and non-restrictive.
+    It is also unique in that the project does not really \emph{solve a problem}, at least in the traditional sense.
+    That being said, there are ways to describe this project as creating a product that aids in the creation of music, where the goals are centered the creation of an innovative tool that can be marketed and sold to all kinds of musical artists.
+
+	To approach this from the highest level, one can look at it from the perspective of the users of the final product.
+% 	This problem is best demonstrated from the lens of users of the final product.
+	In this case, we are going to look at the problem from the perspective of those involved in the creation and consumption of music.
+	There is often a divide drawn between the artists, producers, and creators of a musical piece and the consumers, onlookers, and fans that surround the music.
+% The divide drawn between those involved in the creation of music and those who consume and enjoy music is often overlooked and ignored.
+	There are barriers between stages, different accounts for artists and users on distribution sites, and a completely hidden backend of the music industry that is often an afterthought for the common listener.
+% 	This divide is exacerbated by the fact that musicians and consumers experience the music industry differently due to a variety of barriers, like specialized access to distribution services. For example, the interface that a consumer uses on a service like Spotify is different from the one that a creator uses.
+	However, there is a large degree of overlap between the two groups, as creators are almost always enjoyers of music, and the prohibitive factors such as financial means and technical expertise that prevent people from becoming creators are becoming less and less of an issue as time goes on and technology progresses.
+% 	The overlap between the two groups is immense; fortunately, prohibitive factors like financial means and technical expertise are becoming less of a problem. This can be mostly attributed to the increase in accessibility and availability of many digital and technical tools used in the industry.
+	This seems to be a point that can be harped on.
+	There is a lot of opportunity in designing projects that appeal to all groups across the spectrum of creators and consumers.
+	Projects that target creating products that are enjoyable, usable, versatile, and manipulable frequently yield a results that are innovative and marketable; however, many products used today generally suffer from any combination of the following problems: high price point, complex interface, and portability.
+	Thus, a summary of the problem incurred by the project is as follows: We need new ways to make new sounds in a impressive format that is accessible, portable, affordable, and usable.
+	While this is a vague description, it sets the stage for a wide set new music-based technology, designed to reach individuals in a variety of sectors.
+\subsection{Solution}
+%Section describing our final product
+The final product for our project will be a modular 
+digital effects processing pedal that receives and modifies the sound of an instrument or microphone paired with a loop module with which users can record and playback their input, allowing them to build complex rhythms and melodies with a single input. Alongside the base pedal unit, we will develop an external interface to improve the learn-ability and usability of our platform.
+
+%Section discussing our steps for our solution
+In order to bring this project into reality, there are three main phases. Our first phase will be the research stage, which focuses on learning how we can read sound waves from an input device into the computer, understanding the equations that will produce our desired effects, alongside the functionality and limitations of Supercollider and Pure Data, both of which are programming environments designed for real time synthesis of audio. For this phase, we will reference several books such as Modern Recording Techniques by David Miles Huber, Understanding Audio by Daniel M. Thompson, and The Supercollider Book by Scott Wilson, David Cottle, and Nick Collins to obtain equations for the different effects and tools we wish to make, online resources for programming in Supercollider or Pure Data, and our own experience working with the different equipment for figuring out our design for our hardware solution.
+Once the research phase is completed, we can begin the software implementation stage using Supercollider or Pure Data to implement our software component. Once we reach a point where the effect is giving us what we want, we will begin the process of converting it into a VST, or Virtual Studio Technology. This will allow us to begin our testing with potential end-users to determine if there are any major changes or bug fixes we need to make before we move it over to hardware.
+If our software implementation works for both our programming environment of choice alongside a digital audio workspace, we will start transferring the functionality to an embedded system, creating a streamlined way of interfacing with the effects while allowing for a more portable and durable form. This hardware implementation phase will involve using a small form-factor computer, such as an Arduino or Raspberry Pi, to both receive and translate the signal alongside apply the effects to our output. After the transferring process is complete, we can then test again with both previous testers, and new focus groups to see if our solution is valid.
+
+\subsection{Metrics}
+To gauge the success of our project, we will measure the pedal's efficiency, quality, and cost, as well as analyze how well people are able to interact with our device. One of the main metrics we will be looking at once we enter the physical prototype stage is how much time it takes for a performer to achieve a desired outcome using our pedal. This can be measured in seconds, and will give us understandable data on how simple our device is to use. A shorter amount of time means that the user is able to achieve their outcome faster, and that the device has good usability. A longer amount of time would mean that some aspect of our interface might be costing the user more thought than needed. Who we choose for this test will also matter, as we need to make sure we include subjects outside of our group.
+
+The subjects we choose to gather this efficiency-metric will also range in experience, both musically and technically. It will be beneficial to analyze the usability of our device with experienced musicians who have experience using looping effects pedals, experienced musicians who don't, and beginner musicians. Gathering data from a range of artists will also be helpful, such as getting feedback from people in rock bands, electronic acts, and acapella artists (OSU's Divine).  
+
+In order to create a more accessible device, we would like to be sure that the costs to build our product stay low enough to create an affordable product at scale. Current products in this vein range from around \$100 to \$1,500 at the higher end. Once our investigation into potential hardware is complete, we'll be able to create a realistic target price for the finished unit and create a budget for prototyping from that.
+
+It will also be important to measure the quality of our device, the most essential being a mitigation of delay. Our looping pedal should be able to be used correctly, which requires having as little audio delay as possible. Achieving this quality will ensure that our pedal is ready for stage use. Reliability will also need to be examined through stress-testing our pedal in various scenarios to ensure that the audio output is consistently clear and high-quality.
+
+\end{document}
