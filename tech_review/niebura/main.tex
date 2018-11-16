@@ -1,0 +1,159 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\bibliographystyle{IEEEtran}
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{Audio Extravaganza}
+\def \CapstoneTeamNumber{26}
+\def \GroupMemberOne{Martin Barker}
+\def \GroupMemberTwo{Devon Cash}
+\def \GroupMemberThree{Alexander Niebur - Hardware/Software Specialist}
+\def \GroupMemberFour{Mason Sidebottom}
+\def \GroupMemberFive{Ben Windheim}
+\def \CapstoneProjectName{Audio Extravaganza}
+\def \CapstoneSponsorCompany{Oregon State University}
+\def \CapstoneSponsorPerson{Kirsten Winters}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{%Problem Statement
+  %Requirements Document
+  Technology Review
+  %Design Document
+  %Progress Report
+  }
+
+\newcommand{\NameSigPair}[1]{\par
+  \makebox[2.75in][r]{#1} \hfil \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+  \makebox[2.75in]{} \hfil\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+      %\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group \CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                %\NameSigPair{\GroupMemberOne}\par
+                %\NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+                %\NameSigPair{\GroupMemberFour}\par
+                %\NameSigPair{\GroupMemberFive}\par
+            }
+            \vspace{20pt}
+        }
+        %\begin{abstract}
+        % 6. Fill in your abstract    
+        %The Audio Extravaganza project is a unique effort to help create a useful tool for musicians. There are a wide variety of barriers for creators and consumers alike in the music industry, ranging from financial means to technical expertise. This project aims to help all people interested in the creation of music be able to create unique sounds in an accessible format. Our team proposes to build a modular effects pedal that users can interface with to generate unique sounds while cultivating a captivating experience. To complete this task, our project will be divided into three main stages. Research, implementation, and embedding. The success of our product will be contingent on each of these stages. To measure the completeness and success of our product, we will evaluate it on a the variety of metrics, including but not limited to: efficiency, quality, cost, usability, and user retention.
+        %\end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{Technology Review}
+    \subsection{Introduction}
+    The Audio Extravaganza project is a unique effort to help create a useful tool for musicians. There are a wide variety of barriers for creators and consumers alike in the music industry, ranging from financial means to technical expertise. Our project aims to help all people interested in the creation of music be able to create unique sounds in an accessible format. Our team proposes to build a modular effects pedal that users can interface with to generate unique sounds while cultivating a captivating experience. To complete this task, our project will be divided into three main stages. Research, implementation, and embedding. The success of our product will be contingent on each of these stages. To measure the completeness and success of our product, we will evaluate it on a the variety of metrics, including but not limited to: efficiency, quality, cost, usability, and user retention.
+    
+    \subsection{Operating System}
+    The operating system we use for our project serves as the foundation for all our operations, how much processing power will be required, what programs we can use to receive information, and if it will translate with our hardware. To do this, we will be examining Arch Linux ARM, Debian, and Xenomai Linux.
+        \subsubsection{Arch Linux ARM}
+        Arch Linux ARM is a port of Arch Linux, an operating system designed for x86 based computers, for ARM based computers such as the Raspberry Pi, and anything after ARMv5. Arch is known for being very simple and lightweight due to the fact that it is updated daily so it focuses on the basic user requirements. This results with faster boot times and lower hardware requirements. It also has several established audio I/O packages available. Since Arch is under a GNU license, it can be used for free, and can easily be distributed.
+        
+        \subsubsection{Debian}
+        Debian is a UNIX based operating system with support for ARM based computers. Like Arch, it supports several versions of ARM, and it is also under GNU license allowing for free use, and distribution. This option might have more functionality installed by default, so it might require the deletion of files in order for it to be suitable for our use case, but depending on which Debian flavor we choose, we might get access to additional features that can help our final product.
+        
+        \subsubsection{Xenomai Linux}
+        Unlike the previously mentioned operating systems, Xenomai Linux is a real-time operating system. This means that the operating system will be dealing with specific time constraints so it's primary use case is for situations where failures matter. Since we do not want our audio effects to crash mid-use, or to stutter behind, whicg can serve as an effective option to mitigate processing delays. Additionally, it is the operating system used on the Bela board, a hardware option that our group has been looking at.
+
+        \subsubsection{Conclusion}
+        Overall, any of these operating systems could be used in audio manipulation, but I think that the use of a real-time operating system would be our best option for our product due in part to its focus on time constraints, and support for our other hardware.\\
+        \\
+        \begin{tabular}{c|c|c|c}
+             & Arch Linux ARM & Debian & Xenomai Linux \\
+            \hline
+            Portability & ARMv5 and above support & ARM support & ARM support \\
+            OS Type & General Purpose Operating System & General Purpose Operating System & Real-Time Operating System\\
+            
+        \end{tabular}
+
+    \subsection{System Housing}
+    For housing our device, there are several key factors that need to be researched. Cost, material strength, weight, and ease of construction. Each of these variables will help us decide where and how to use it in the creation of our system housing. With 3D printed plastic, acrylic and steel being our primary choices.
+    
+        \subsubsection{3D Printing Plastic}
+        The 3D printing market has been slowly growing over the past couple of years, and with it, the price of materials has dramatically decreased. But the concern of using a plastic in 3d printing, such as PLA (MSRP of \$15.99 per kilogram)\cite{e1} or ABS (MSRP of \$15.99 per kilogram)\cite{e1}, is that it might not be able to protect the materials inside itself in the casing. The risk of breaking our product can be mitigated through the use of ABS, as it is the strongest from the plastics consumers can use for 3D printing\cite{e1}, alongside structural design methods such as the use of ribbing and gussets for additional support\cite{e2}. From a weight standpoint, 3D plastic will most likely be our lightest option, but at the same time, our final product might have some disfiguration in shape due to the 3D printing process. We can make the disfiguration less noticeable through the use of paints, by sanding down edges, applying branding, and other external decorations. Additionally, we can design our model in a consumer level 3D modeling software such as Blender, or through designs offered online. Though we should also consider making the model ourselves so we can easily include holes for screws or zipties to securing our final product.
+        
+        \subsubsection{Acrylic}
+        An acrylic case is another possible option for use in our project. One of the highlight features is the fact that we can see through acrylic, so if we want to make a product that shows off the interior components, that is easy to implement. Though the transparency comes at a significant price, with the MSRP of \$8.33 per square foot of .125 inch thick acrylic\cite{e3}. This option does result with an easier to see product, but if our final product is not clean or well designed, it could look bad to clients or investors. Additionally, acrylic requires mechanized cutting assistance, which can easily be done through the use of a CNC machine and designing in software like AutoCAD or other industrial design software. While acrylic can provide a flashy final product, it would still require some assistance from additional materials in order for it to be considered complete. Using 3D printed fittings, we can attach all sides together, and put our system inside, which can be secured using screws or zipties. The key benefit to Acrylic is that despite its looks, it can be a lot stronger than 3D plastic\cite{e4}, but it can lose out on some structural support assets that can be hidden away in a solid enclosure.
+        
+        \subsubsection{Steel}
+        Where the two preceding options work well for budget options, it will not have the quality or industry expectation compared to a metal, specifically steel, enclosure. This can be more difficult because metal is difficult to bend or shape, additionally, there is a need for the CNC machine once again to cut our pieces down to size, alongside cut holes for I/O ports and sockets. With an MSRP of \$5.98 per square feet of .0179 inch thick steel\cite{e5}, it is not as costly as acrylic, but is not as thick either. The main concern is the fact that we would be using a conductive metal, which could lead to the computer shorting out if there is a loose wire in contact with the metal exterior. In order to prevent any electrical issues, we can use some rubber grommets to provide a buffer between the board alongside giving it a platform to be secured to. The use of a 3D printed enclosure can also help with preventing the board from coming in contact with the conductable surface while adding an extra buffer of protection. This material selection will add to the overall weight a significant amount, but it should not be too noticeable compared to professional solutions.
+
+        \subsubsection{Conclusion}
+        Overall, I think that the best casing option for this project will be the steel with 3D plastic enclosure for our computer. This option gives us structural strength, a professional look, and it is relatively cheap to acquire the required materials. Additionally, we can use any remaining 3D plastic to create buttons or dials as need be.\\
+        \\
+        \begin{tabular}{c|c|c|c}
+             & 3D Plastic & Acrylic & Steel \\
+            \hline
+            Price & \$15.99 per/kg & \$8.33 per sq.ft & \$5.98 per sq.ft \\
+            Appearance & Solid, Requires Painting & Transparent & Solid \\
+            Weight & Light & Medium & Heavy\\
+            
+        \end{tabular}
+
+    \subsection{Audio Looping}
+        One of the primary functions for our project is to loop audio for use, and as such we need to take into consideration the audio pipeline, features that assist in looping, and how we plan to store any looped audio.
+        
+        \subsubsection{Ability To Overdub Looped Track}
+        Overdubbing is the process of adding to a previously recorded track. In the scope of this project, if we record something with our looping pedal, we expect to be able to record more sounds over the previous recording, and have them result with a new recording with both of the effects in them. This functionality is really beneficial if there are other effects pedals in the chain that can distort and apply cool new sounds to build off what currently exists. In order to achieve this functionality, our audio pipeline will need to get an audio stream from our user input, an audio stream from our recorded sound, record new sound, and then output to a speaker or another effects pedal. This process should be easy enough to implement assuming we have a fast enough CPU and enough RAM to store the information.
+        
+        \subsubsection{Storing of Looped Audio To File}
+        One of the stretch goals that we had was the ability to store a looping audio signal to a file to later be used in post production. In order to implement this functionality, we will need an operating system that can support file transfer via USB, which will be easier for our Arch, Debian, or Xenomai options, but not if we go with an FPGA approach. For the common case of using a more robust operating system, we will most likely be using an audio I/O library to process and convert the signal into a file that can be stored on an attached USB flash storage drive. With the right codecs, we might be able to use the storage medium as a method of playing our recorded audio back. Our only concern would be if looping using this method prevents overdubbing of previous recordings as the processing to get the file's information to output might not allow for audio input to affect the signal going out.
+        
+        \subsubsection{Storing of Looped Audio To Program Memory}
+        In the situation that we cannot read from a file fast enough, we can always store our audio information to the local program memory. The effectiveness of this method will become very dependent on much memory is allocated for storing the incoming information, as in the scenario where we do not have enough memory space, we might not be able to hold more than a second of looped audio. Additionally, this method does not allow for us to easily retrieve the saved audio for later playback, so an alternative method might have to be utilized in order to retrieve them for later use. A benefit that this option and the preceding method share is that their values will have a very small chance of ever being lost due to power loss.
+        
+        \subsubsection{Conclusion}
+        While the ability to use any of these options depends on our hardware, I think we will be able to allow for overdubbing and the storing to a file, as our audio pipeline should allow for that to run effectively and those are key features when it comes to audio looping.\\
+        \\
+        \begin{tabular}{c|c|c|c}
+             & Overdub & Save to File & Save to Program Memeory \\
+            \hline
+            File I/O Type & Input and Output & Output & Output \\
+        \end{tabular}
+
+
+\bibliography{references}
+\end{document}
