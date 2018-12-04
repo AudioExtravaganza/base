@@ -1,0 +1,40 @@
+\section{Solution, Tools, and Methods}
+    %   Digitized modular synthesizer
+    %   Each module can extend behaviors
+    \subsection{Solution}
+        % The solution I propose is an open-source digitally implemented dynamic modular system.
+        % This device would be modular in the sense that one module can be standalone, or paired with multiple modules to create a more diverse system.
+        % Each module would be dynamic, meaning that it could shift from one state to another in separate patches. For example, in one patch it could work as an LFO\footnote{Low frequency oscillator.}, but in the other it could work as a filter.
+        % Because this would be an open-source implementation, it would allow a community of users to manipulate our framework to design and share new modules.
+    
+        % This solution solves many of the problems listed above. Firstly, it helps reduce the total cost of a modular system, because one module can be used to achieve many different things. %better word than things
+        % Secondly, it will be portable, because one module can replicate many modules.
+        
+        The solution I propose is an open-source semi-modular synthesizer embedded on a small device.
+        This device's main goal would be to bring some of the creative inspiration of a modular synthesizer to a small, portable device.
+        From a high level, the device would simulate a variety of modules while giving users a physical interface to tweak their behavior.
+        This device would also be open-source, so users could create and use their own modules in patches.
+        
+        Some key features of this device would be:
+        \begin{itemize}
+            \item A User will be able to interact with the synthesizers modules using hardware inputs like dials, sliders, buttons, and switches.
+            \item Users will be able to create their own modules and patches on a computer and import them onto the device via a standard data transfer method like access to the file system via USB.
+            \item Users will be able to save and reload the state of the device to re-use a patch later. This will significantly help during performances where the artist has an extremely complex patch.
+            \item Additional external input will be optional. I.e The device will generate audio on its own without the need for an outside signal.
+            \item Users will be able to use midi controllers as additional external input, to allow musicians to use devices like a keyboard or launchpad.
+            \item Users will be able to connect output devices via standard audio output.
+            \item The device would be usable and engaging for beginners and experts alike.
+        \end{itemize}
+    
+    \subsection{Tools \& Methods}
+        To implement this solution, the team will make use of a variety of audio synthesis frameworks and hardware tools.
+		One of the main frameworks we will use is SuperCollider, which is an open-source "platform for audio synthesis and algorithmic compositions"\cite{sc}.
+		Another framework we will consider using is PureData, which "is an open source visual programming language for multimedia"\cite{pd}.
+		These two tools will be used to create a working digital prototype on systems that have standard hardware specifications.
+        Once we have a working digital prototype, we will test its performance to verify that it will run smoothly on a system with significantly lower hardware specifications.
+        Once our tests are successful, we will embed our solution on a small board.
+        There are a few constraints we will have to consider when choosing the board to use.
+        First, it must have sufficient processing power.
+        It will also need to have the availability for a large set of general purpose input/output (GPIO) pins.
+        Therefore, some of the small devices we will likely explore the Beagleboard Black and Raspberry Pi 3.
+        Finally, we will add hardware inputs to allow the user to interact with the software in an intuitive way that does not inhibit the creative process.
