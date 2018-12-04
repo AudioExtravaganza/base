@@ -1,2 +1,2 @@
 # Base Repositiory
-Contains all other
+Build pdf with "make pdf"
