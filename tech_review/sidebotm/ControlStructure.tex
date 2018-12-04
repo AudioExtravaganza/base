@@ -1,0 +1,79 @@
+\section{Process Control Languages}
+Process control languages refers to the languages that can be used to create underlying software between the operating system and our modulation software.
+This will manage, verify, and control the file system, dependencies, and tasks.
+This component will be crucial to making sure that all processes are started automatically after powering up the pedal.
+There are many different languages that can be used to achieve this; however, the languages that will be examined are bash scripts, python3, and C++. 
+The metrics used to compare them will be speed, syntax, and support.
+Speed will be evaluated with large, complex programs in mind.
+Syntax will be measured with maintenance and understandability in mind.
+Finally, support is a measure of the access to helpful community threads and documentation.
+    %Comparison Metrics
+        % Speed
+        %
+        % Re write this section
+        
+        % Maintainability
+        
+        
+    \subsection{Bash Scripting}
+        The Bourne Again Shell, more commonly known as Bash, is a shell that conforms to the "IEEE POSIX P1003.2/ISO 9945.2 Shell and Tools standard" licensed under the GNU Public License \cite{bib:bash}.
+        It was designed to group "features from the Korn Shell and C Shell" into one shell.
+        It highlighted and improved features like: shell functions, job control, aliases, and more\cite{bib:bash}.
+        Bash scripts allow you to create a program that calls other programs sequentially as well introduce useful utilities.
+        
+        In terms of speed, bash scripts are quick for operating system commands like \emph{ls} and \emph{dir}.
+        However, there are a few factors that negatively impact the speed of bash scripts, like the fact that bash is interpreted\cite{bib:bashMan}.
+        Most importantly, the efficiency of a bash script relies heavily on the programmer's experience and knowledge of the language.
+        This is mostly due to the fact that there are many common practices that spawn new sub-processes and add overhead.
+        Overall, bash performs fine by this metric, especially for basic programs; however, it begins to fall short when the complexity of a program grows.
+        
+        Bash script syntax can be extremely challenging to understand, because of the idea that there are many different ways to accomplish one task.
+        The significance of this problem generally increases as the size and complexity of a program grows.
+        Finally, it is incredibly challenging to collaborate on a bash script for many of the reasons listed above.
+        
+        The amount of support for Bash scripting is relatively high.
+        Unfortunately, many community threads introduce new syntax, which can create more of a problem.
+        Fortunately, the full manual is accessible online.
+
+    \subsection{Python3}
+        
+        Python3 is an open source, interpreted programming language that has applications across the spectrum, ranging from application development to scientific analysis \cite{bib:py}. 
+        Python can use a package manager named pip, which allows users to install other modules and libraries\cite{bib:pip}.
+        
+        In terms of performance, python3 is a quick language that does a lot of optimization behind the scenes.
+        Even though it is interpreted, many of the libraries that are used will be byte compiled, further increasing its performance.
+        
+        One of the strongest suits of python3 is its level of maintainability.
+        It boasts simple, but elegant syntax, that makes it very easy to read a python script and follow along.
+        The design principles discussed in \textit{The Zen of Python} explain that code written in python should always strive to be understandable, simple, and explicit\cite{bib:pep20}.
+        Therefore, python performs extremely well in terms of syntax.
+        
+        Finally, the support for python3 is extremely good.
+        The documentation online is very detailed and understandable.
+        Online community threads generally contain helpful information that is easy to understand and adapt.
+    \subsection{C++}
+        C++ is a language created by Bjarne Stroustrup in 1979\cite{bib:c++H}. It is a compiled language that gives immense control to the programmer at the cost of being unsafe \cite{bib:c++D}.
+        In terms of speed C++ is widely regarded as one of the fastest languages available, because it is compiled to machine code\cite{bib:c++D}.
+        For the most part, C++ syntax is relatively understandable;
+        However, for programmers who haven't used C++ before, there can be a significant learning curve with memory management and identifying and fixing segmentation faults.
+        In a few cases, code can become extremely hard to understand, especially if that is the developers goal. 
+        That being said, this is not a problem that is unique to just C++, and can be seen in nearly all languages.
+        The support for C++ is very verbose, and it is very easy to find helpful information on either the online documentation or community threads. 
+    \subsection{Concluding Thoughts}
+        While these three languages can be helpful for specific tasks, python3 and C++ are both great candidates.
+        If the hardware performance is low, C++ should be used to maximize efficiency.
+        On the other hand, if hardware performance is fairly good, python3 is a good selection. See table \ref{tbl:PCL} for generalized information.
+        \begin{table}[!ht]
+            \begin{center}
+            \caption{Process Control Languages}
+            \label{tbl:PCL}
+                \begin{tabular}{| c | c | c | c | c | c |}
+                    \hline
+                    & Speed & Interpreted & Compiled & Syntax & Support \\ \hline
+                    \textbf{Bash Scripts} & Medium & Yes & - & Hard & Moderate \\ \hline
+                    \textbf{Python3} & Medium to Fast & Yes & Can Byte Compile & Easy & Good \\ \hline
+                    \textbf{C++} & Fastest & No & Machine Code & Moderate & Good \\ \hline
+                \end{tabular}
+            \end{center}
+        \end{table}
+            

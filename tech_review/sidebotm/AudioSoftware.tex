@@ -1,0 +1,82 @@
+\section{Audio Control Software}
+    % Comparison Metrics
+        % Ease of use
+        % Portability (What Operating Systems)
+        % Packaging to VST
+        % Easy to interface with
+        % Flexibility
+        % How much can you do with it? Robustness
+        % Community / Support
+    Audio control software are languages and tools that can be used to create, modify, and export audio signals.
+    The three technologies -- Csound, SuperCollider, and Pure Data -- fall into this category, and will be evaluated on the following criteria: integration, single board support, and portability. 
+    
+    \subsection{Csound}
+        Csound, originally created by Barry Vercoe in 1985, is an open source set of tools used by musicians to create and manipulate audio digitally \cite{bib:cSoundHome}. Since its initial inception improvements and additions have made it extremely powerful. It contains the "most varied set of unit generators" and is considered to be "one of the most powerful musical instruments ever created"\cite{bib:cSoundMan}.
+        
+        Integration with Csound is incredibly versatile, because "Csound can ... be called through other programming languages such as Python, Lua, C/C++, Java, etc." \cite{bib:cSoundHome}.
+        This grants developers the ability to take input from hardware or software via libraries or built-in functionality for their language of choice.
+        
+        
+        In terms of portability, Csound performs extremely well, because it can be compiled on any machine that has a C compiler. I.e Csound can run all major platforms as well as ios and Android.
+        It also makes use of "portable audio formats like AIFF and WAV," which allows users to move between machines and platforms with ease\cite{bib:cSoundMan}.
+        In addition to cross platform compatibility, Csound targets to always provide backwards compatibility; Furthermore, "you should be able to render a file written today with the latest Csound in 2036" \cite{bib:cSoundHome}.
+        
+        Setting up Csound on a single board computer is a relatively painless process, depending on the computer being used.
+        The only challenge is preparing the audio hardware to be accessed by Csound; however, this process is incredibly well documented by Paul Batchelor and Trev Wignall in their article "BeaglePi: An Introductory Guide to Csound on the BeagleBone and the Raspberry Pi, as well as other Linux-powered tinyware" \cite{bib:csoundJ}.
+        
+        Overall, Csound is an incredibly powerful tool that gives musicians and developers an extremely large amount of control.
+    \subsection{SuperCollider}
+        SuperCollider is an open source tool used for generating and modifying audio\cite{bib:sc}.
+        It is made up of three components, sclang, scsynth, and scide \cite{bib:sc}.
+        Sclang is the language that programmers use to send commands to scsynth where  audio signals are created and manipulated\cite{bib:sc}.
+        Scsynth is a real time audio server that creates and outputs signals. Finally, scide is the editor for sclang\cite{bib:sc}. 
+        
+        SuperCollider integrates extremely well with a variety of devices to further improve its ability to create unique sounds\cite{bib:scB}.
+        It also provides users with functionality to communicate with other audio programs over a network via \textit{Open Sound Control} (OSC), which was developed at Berkley to change control data through audio applications\cite{bib:scB}.
+        Also, SuperCollider provides functionality to work directly with Arduino boards, so that a board can be configured to run in a stand alone mode while making use of the digital and analog ports.
+        This configuration also can access serial ports to communicate with outside actors\cite{bib:scB}.
+        Aside from Arduino support, SuperCollider can be setup to run in a headless mode on many other single-board computers with little to no hassle.
+        
+        
+        In terms of portability, SuperCollider can be run on all major operating systems; however, there are some behaviors that are restricted to unique operating systems.
+        For example, serial ports can only be used on POSIX systems like linux and MacOS\cite{bib:scB}.
+        Finally, SuperCollider is slightly limited in its functionality when working in Windows.
+        
+        
+        
+    \subsection{Pure Data}
+        Pure Data is a visual programming language with a variety of media types\cite{bib:pd}.
+        It delivers a patch based programming environment to users where signals are directed between modules via digital \textit{patch cables}.
+        It is open source and allows users to bring in external objects compiled in C or C++ \cite{bib:pd}. 
+        In terms of being able to set up a single board computer to run patches made in Pure Data, it can be done via a library named libpd\cite{bib:emPD}.
+        This involves building a dispatcher in either Java or Objective-C\cite{bib:emPD}.
+        The dispatcher would need to be configured handle all hardware and software input manually.
+        Pure Data is extremely flexible in the ways it can integrate with other tools.
+        Firstly, Pure Data can communicate with other audio generating languages over the local network via OSC.
+        Pure Data also is able to be configured to take input from a variety hardware and software sources.
+        Finally, it can run on all major operating systems -- Linux, MacOS, and Windows.
+        Therefore, anything created in Pure Data should be able to run on all operating systems with minimal additional work from the creator.
+        
+
+
+    
+    \subsection{Concluding Thoughts}
+    In general, each of these tools provide developers and musicians the ability to generate and/or modulate audio; however, Csound is the most versatile in each of the categories and provides an extremely robust set of features.
+    While Csound will be the best choice for this project, the others may still provide useful features that can integrate with Csound via Open Sound Control.
+    See table \ref{tbl:ACS} for a brief overview of the information covered above.
+    
+        \begin{table}[!ht]
+        \begin{center}
+        \caption{Audio Control Software}
+        \label{tbl:ACS}
+
+            \begin{tabular} {| c | c | c | c | c | c | c |}
+            \hline
+             & Mac OS & Linux & Windows & Single Board & Hardware Integration & Software Integration \\ \hline
+            \textbf{Csound} & Yes & Yes & Yes & Yes & Robust & Many \\ \hline
+            \textbf{SuperCollider} & Yes & Yes & Limited & Yes & Built-In & via OSC \\ \hline
+            \textbf{PureData} & Yes & Yes & Yes & Via Dispatcher & Built-In & via OSC \\ \hline
+            \end{tabular}
+            \end{center}
+        \end{table}
+        
