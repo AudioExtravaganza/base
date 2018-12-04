@@ -1,0 +1,17 @@
+\section{Conceptual model for software design descriptions}
+% This clause establishes a conceptual model for SDDs. The conceptual model includes basic terms and concepts of SDD, the context in which SDDs are prepared and used, the stakeholders who use them, and how they are used. 
+
+This section presents the conceptual model for which the Software Design Descriptions (further referred to as SDD) will be presented. The conceptual model will include basic terminology and concepts for the SDD, the surrounding concepts and context, and the stakeholders interested. 
+
+\subsection{Software design in context}
+In the Audio Extravaganza project, the design method will be a blend of a variety of different approaches to software development. The overarching system will be module-based for creating and loading our separate effects/subsystems, which we will refer to as patches to avoid ambiguity of terminology when dissecting audio effects. Whether these patches are running concurrently (such as the combination of a modulation effect and a looper) or are being cycled through one at a time, the patches will need to maintain autonomy and distinction justifying the need for a load-in, load-out approach. However, the individual patches will be enveloped in an object-oriented design to encourage protection and separation for the control interface. This will help isolate potential issues with development and create for clear and readable logic for a strong and stable development cycle within the team. 
+
+\subsection{Software design descriptions within the life cycle}
+\subsubsection{Influences on SDD Preparation}
+The description and requirements for the Audio Extravaganza project software is clearly defined in the culmination of each team member\textsc{\char39}s requirements and technical documents. The need for the previously mentioned design is based specifically on the results of these documents. 
+
+\subsubsection{Influences on Software Life Cycle Products}
+The final software product of the Audio Extravaganza project is certainly highly dependent on the design choices list here in the SDD conceptual model as well as the entirety of this document. In respects to the SDD conceptual model, this design model influences the entirety of the software implementation phase, which we complete before integration into hardware. The development cycle will be consistently referencing this model of implementation for the actualized implementation, and the final product\textsc{\char39}s software will be directly reflective of the blended design decisions laid out before. In addition to design and implementation, test design and execution will be developed based on the design model constructed here. 
+
+\subsubsection{Design Verification and Design Role in Validation}
+After documentation, rough test cases can be constructed to ensure the accuracy and validity of the design and implementation models constructed here, in the technical documents, and in the requirements documents. While many of the targeted goals and metrics for evaluation are fairly subjective, test cases before even beginning implementation can drive development in a way that suits the requirements for the project while adhering to the blended software development description design we have built. The range of design concerns present in this document can be addressed in a test-driven development scenario in which the metrics for success are defined before the implementation has begun or finished. 

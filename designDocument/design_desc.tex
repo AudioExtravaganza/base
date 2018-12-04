@@ -1,0 +1,230 @@
+\section{Design description information content}
+
+\subsection{Introduction}
+    The following sections describe what viewpoints will be used and how they will be used to design the product. The information provided can be used to understand the goals of the design. The information can be found in the following sections: SDD identification, design stakeholders, design views, design viewpoints, design elements, design rationale, and design languages.
+
+\subsection{SDD identification}
+    This document describes the system design for the Audio Extravaganza capstone project device following the standards described in \textit{IEEE 1016-2009}.
+    
+\subsection{Design stakeholders and their concerns}
+    The stakeholders involved in the Audio Extravaganza project are the members of the development team and our client, Dr. Kirsten Winters. The stakeholders' concerns are listed below:
+    \begin{itemize}
+        \item The project is to create a device that can apply audio effects to an input from an instrument or microphone.
+        \item The final device should be suitable for live music performance.
+        \item The device's interface should be easy to use and accessible to users unfamiliar with other audio effects devices.
+        \item The device's audio effects systems should be powerful enough to be useful to experienced audio effects users.
+        \item The final price of the device should be affordable to improve its accessibility to novice users.
+    \end{itemize}
+\subsection{Design views}
+    The view used to design the Audio Extravaganza capstone project device are:
+    \begin{itemize}
+        \item Context
+        \item Composition
+        \item Dependency
+        \item Interface
+        \item Interaction
+        \item Resource
+    \end{itemize}
+
+\subsection{Design viewpoints}
+    
+    \subsubsection{Context viewpoint}
+        \label{desc:context}
+        This viewpoint is concerned with how users and/or stakeholders will interact with the system in reference to a specific context. The elements used in this viewpoint will be \textit{actors}, \textit{relationships}, and \textit{constraints}.
+        In this case, our actors will be musicians, and people with extensive musical hardware experience, as well as novices and live performers. The relationships will be how much experience a user has with musical hardware such as effects pedals, as well as experience with music in general, as we would want our product to be intuitive enough for non-technical musicians to use. Constraints will be how aware our subjects and stakeholders are with effects pedal standards, such as using a large foot pedal input to trigger loops, and dials to adjust sound. 
+        Entities described in the context viewpoint will be done via UML use cases.\cite{bib:ieeestd}
+    
+    \subsubsection{Composition viewpoint}
+        This viewpoint describes the the role and structure of system elements. The elements referenced in this viewpoint will be \textit{entities}, \textit{relationships}, and \textit{attributes}. For this project, the structure of our system elements will be mainly divided up into software and hardware. With software programming including creating modifiable effects capable of being transferred to our hardware, which will need to be securely housed, reliably powered, and user friendly. 
+        These viewpoint will be described through UML component diagrams to clearly demonstrate the hierarchies and structure.
+        
+%     % Viewpoints below are just outlines, not correctly phrased yet
+%     \subsubsection{Logical viewpoint}
+%         % this can probably be rephrased
+%         "The purpose of the Logical viewpoint is to elaborate existing and designed types and their implementations as classes and interfaces with their structural static relationships. This viewpoint also uses examples of instances of types in outlining design ideas. " \cite{bib:ieeestd}
+        
+%         Elements: entities, relationships, attributes, constraints\\
+%         Lang: UML class diagrams \& UML object diagrams
+    
+%      \begin{itemize}
+%             \item{Design concerns that are the topics of the viewpoint:}
+%             One design idea to elaborate on is our stretch goal of a wireless input system. Which would be a mobile interface (either developed on the app-store or accessible via a website) which can be used to edit more detailed parameters and save/load presets wirelessly onto the effects board. 
+            
+%             \item{Design elements / types of design entities / attributes / relationships / constraints introduced by that viewpoint or used by that viewpoint (may have been defined elsewhere). These elements may be realized by one or more design languages:}
+
+            
+%             \item{Analytical methods or other operations to be used in constructing a design view based upon the viewpoint, and criteria for interpreting and evaluating the design:}
+            
+
+% \end{itemize}
+    
+    \subsubsection{Dependency viewpoint}
+        This viewpoint describes how entities are connected and how they should share resources.
+        Hardware and software entities will share power, audio, and input/output resources. Therefore computationally intensity should be considered when designing the audio effects and software for our board, as we don't want to end up in a position where throttled computational power limits our progress. Power draw for our operating system, wireless external interface transmission, and input/output interaction will need to operate together seamlessly. Utilizing our boards audio card will also be important to ensure that resources are allocated in a fair and efficient way, such that a simple low pass filter is not being repeated for each effect. The software effects code should be modularized whenever possible. 
+        The notation used to describe this viewpoint will be UML package diagrams.
+
+        
+%     \subsubsection{Information viewpoint}
+        
+%         "The Information viewpoint is applicable when there is a substantial persistent data content expected with the design subject." \cite{bib:ieeestd}
+        
+%         els: Entities, relationships, attributes\\
+%         lang: UML Class diagrams
+    
+%  \begin{itemize}
+%             \item{Design concerns that are the topics of the viewpoint:}
+%             Not applicable since there is not substantial persistent data content, the 'data' created by our pedal will be audio.
+            
+%             \item{Design elements / types of design entities / attributes / relationships / constraints introduced by that viewpoint or used by that viewpoint (may have been defined elsewhere). These elements may be realized by one or more design languages:}
+
+            
+%             \item{Analytical methods or other operations to be used in constructing a design view based upon the viewpoint, and criteria for interpreting and evaluating the design:}
+            
+
+% \end{itemize}    
+        
+    % \subsubsection{Patterns use viewpoint}
+    
+    %     "This viewpoint addresses design ideas (emergent concepts) as collaboration patterns involving abstracted roles and connectors." \cite{bib:ieeestd}
+        
+    %     els: Entities, relationships, attributes, constraints\\
+    %     lang: UML composite structure diagram \& UML class diagrams
+        
+    %     \begin{itemize}
+    %         \item{Design concerns that are the topics of the viewpoint:}
+    %         Some abstract roles for this project will include designers, testers, coders, and builders. Builders building the outer hardware pedal housing, coders coding the effects software, testers testing the software and pedal with stakeholders / users, and designers taking user feedback and making changes to the user level of our pedal.
+            
+    %         \item{Design elements / types of design entities / attributes / relationships / constraints introduced by that viewpoint or used by that viewpoint (may have been defined elsewhere). These elements may be realized by one or more design languages:}
+
+            
+    %         \item{Analytical methods or other operations to be used in constructing a design view based upon the viewpoint, and criteria for interpreting and evaluating the design:}
+            
+        
+    %     \end{itemize}
+        
+    \subsubsection{Interface viewpoint}
+        The interface viewpoint describes how users can expect to interact with the object.
+        In order for information designers, programmers, and testers to correctly use services provided by our design, we will take feedback from user testing and make decisions on how usable our interface is. As well as provide a simple visual set of instructions to help new users use our device.
+        This will be described with a mock-up of the physical interface.
+
+        
+%     \subsubsection{Structure viewpoint}    
+%         "The Structure viewpoint is used to document the internal constituents and organization of the design subject in terms of like elements (recursively)." \cite{bib:ieeestd}
+        
+%         Els: entities, relationships, attributes, constraints.
+%         Lang: UML composite structure diagram, UML class diagram, UML package diagram.
+        
+%  \begin{itemize}
+%             \item{Design concerns that are the topics of the viewpoint:}
+%             Not applicable
+            
+%             \item{Design elements / types of design entities / attributes / relationships / constraints introduced by that viewpoint or used by that viewpoint (may have been defined elsewhere). These elements may be realized by one or more design languages:}
+
+            
+%             \item{Analytical methods or other operations to be used in constructing a design view based upon the viewpoint, and criteria for interpreting and evaluating the design:}
+            
+
+% \end{itemize}
+        
+    \subsubsection{Interaction viewpoint}
+        The interaction viewpoint describes how and why entities should work work together.
+        Actions which occur at the hardware level (adjustment of knobs, stomping of the pedal) should take precedent over what the software does. Since supporting the opposite separation of privilege would cause instances of frustration for users when their physical manipulation of a device is not regarded.
+        This will be described with a UML interaction diagram.
+    
+%     \subsubsection{State Dynamics viewpoint}
+%         "5.11.1 Design concerns System dynamics including modes, states, transitions, and reactions to events. "\cite{bib:ieeestd}
+        
+%         Els: entities, relationships, attributes, constraints. \\
+%         lang: UML state machine diagram
+        
+%  \begin{itemize}
+%             \item{Design concerns that are the topics of the viewpoint:}
+%             Reactions to user events will take precedent in transitioning states and manipulating the inner system software dynamics of our pedal effects. 
+            
+%             \item{Design elements / types of design entities / attributes / relationships / constraints introduced by that viewpoint or used by that viewpoint (may have been defined elsewhere). These elements may be realized by one or more design languages:}
+
+            
+%             \item{Analytical methods or other operations to be used in constructing a design view based upon the viewpoint, and criteria for interpreting and evaluating the design:}
+            
+
+% \end{itemize}
+        
+%    \subsubsection{Algorithm viewpoint}
+%        The algorithm viewpoint describes the specifics of individual processes or functions within the system.
+    
+        % Els: attributes entities.
+        % Lang: ? pseudocode ? UML
+      
+ %\begin{itemize}
+  %          \item{Design concerns that are the topics of the viewpoint:}
+   %         Low Pass Filter:
+    %        High Pass Filter:
+     %       Looping Effect:
+      %      Hardware Button Input decoding:
+       %     Hardware Button Input encoding:
+        %    Audio input decoding:
+         %   Audio input decoding:
+          %  Audio output decoding:
+           % Audio output encoding:
+            
+            
+            %\item{Design elements / types of design entities / attributes / relationships / constraints introduced by that viewpoint or used by that viewpoint (may have been defined elsewhere). These elements may be realized by one or more design languages:}
+            %\item{Analytical methods or other operations to be used in constructing a design view based upon the viewpoint, and criteria for interpreting and evaluating the design:}
+%\end{itemize}
+        
+    \subsubsection{Resource viewpoint}
+        The resource viewpoint describes elements that are part of the system but external to the design. These components will be listed below:
+         \begin{itemize}
+            \item A small LCD screen.
+            \item Two 1/4 inch female to 1/8 inch male audio adapter.
+            \item An on/off switch.
+            \item A foot pedal.
+            \item An options dial.
+            \item An intensity dial.
+\end{itemize}
+    
+    
+\subsection{Design elements}
+    % % Design element template
+    % \subsubsection{Element Template}
+    %     \paragraph{Name}    Element name
+    %     \paragraph{Type}    Entity type (subsystem, framework, library, module, function, etc.)
+    %     \paragraph{Purpose} A description of why the element exists
+    %       
+    %       Not sure we need to include an author on these? - Mason
+    %     \paragraph{Author} Author 
+    
+    
+    
+    \subsubsection{File system}
+        \paragraph{Name}    File System
+        \paragraph{Type}    Subsystem
+        \paragraph{Purpose} This element defines the organization of all files to be used by the overall system.
+
+    \subsubsection{Looping system}
+        \paragraph{Name}    Looping system
+        \paragraph{Type}    Subsystem
+        \paragraph{Purpose} This element defines the procedures that will record and playback audio.
+
+    \subsubsection{Physical Interface}
+        \paragraph{Name}    Physical Interface
+        \paragraph{Type}    Subsystem
+        \paragraph{Purpose} This element defines the physical actions required to use software systems and the hardware elements to display current system status.
+        
+    \subsubsection{Audio Modulation System}
+        \paragraph{Name}    Audio Modulation System
+        \paragraph{Type}    Subsystem
+        \paragraph{Purpose} This element defines the procedures that will be used to apply audio effects to incoming signals.
+        
+    \subsubsection{Audio Effect Library}
+        \paragraph{Name}    Audio Effect Library
+        \paragraph{Type}    Module
+        \paragraph{Purpose} This element defines the set of audio effects that will be included with the system.
+        
+% \subsection{Design overlays}
+% Temp
+\subsection{Design rationale}
+The rationale behind the design of this system is to define a collection of modules that can work either independently or together. By splitting each major functionality into its own subsystem or module, we decrease the coupling, allowing for easier maintainability. Furthermore, the design demonstrates robust solutions that increase usability.
+
+\subsection{Design languages}
+The primary design language used is \textit{Unified Modeling Language}, more commonly referred to as UML. In the case the the entity being described does not follow UML standards, a key and description of notation will be provided.
