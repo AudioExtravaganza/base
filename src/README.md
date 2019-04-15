@@ -18,8 +18,8 @@ The DAM GUI is a virtual implementation of the DAM Good Pedal.
 
 ## How to Run
   - Open gui.scd with SuperCollider. Run the file:
-  -   With cursor in text editor use keystroke `Ctrl-Enter`
-  -   OR select `Language->Evaluate File`
+    - With cursor in text editor use keystroke `Ctrl-Enter`
+    - OR select `Language->Evaluate File`
   - On Linux, use the command: ```sclang -u 57120 gui.scd``` to run the program
 
 
