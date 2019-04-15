@@ -10,4 +10,4 @@ Planing documentation, including:
   - Design Documents
 
 ## Src
-Implementation of the DAM Pedal.
+Implementation of the DAM Pedal. See `src/README.md` for installation and usage instructions.
