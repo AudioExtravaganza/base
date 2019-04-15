@@ -1,2 +1,13 @@
-# Base Repositiory
-Build pdf with "make pdf"
+# Digital Audio Manipulation Pedal
+### Audio Extravaganza, Capstone group 26
+
+## Docs
+
+Planing documentation, including:
+  - Problem Statement
+  - Requirements
+  - Tech Reviews
+  - Design Documents
+
+## Src
+Implementation of the DAM Pedal.
