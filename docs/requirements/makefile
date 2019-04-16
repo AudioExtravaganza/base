@@ -1,4 +1,4 @@
-LATEX	= latex -shell-escape
+LATEX	= pdflatex -shell-escape
 BIBTEX	= bibtex
 DVIPS	= dvips
 DVIPDF  = dvipdft
@@ -22,7 +22,7 @@ $(TRG): %.dvi: %.tex $(EXAMPLES)
 	#requires that you \include{pygments.tex} in your preamble
 
 	$(LATEX) $<
-	$(BIBTEX) $(<:%.tex=%)
+	#$(BIBTEX) $(<:%.tex=%)
 	$(LATEX) $<
 	$(LATEX) $<
 	#remove the pygmentized output to avoid cluttering up the directory
