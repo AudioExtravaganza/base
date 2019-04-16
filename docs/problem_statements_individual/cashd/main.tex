@@ -1,0 +1,222 @@
+\documentclass[journal,onecolumn,draftclsnofoot]{IEEEtran}
+\usepackage{tabularx}
+\begin{document}
+
+\title{Tech Review}
+
+\author{ \large{CS 461: Fall Term} \\ Group 26: Audio Extravaganza\\Devon~Cash}
+
+\maketitle
+
+\begin{abstract}
+ There are a wide variety of barriers for creators and consumers alike in the music industry, ranging from financial means to technical expertise. Our team aims to design and build a modular effects pedal that is easy to use, easy to learn, and accessibly priced. Candidate solutions are examined for single board computers to act as the main processor for the project and audio cards for conversion from analog audio signals to digital signals and vice versa. Additionally, a cost and feature analysis of competing effects pedals is conducted in order to assist in budgeting an affordable alternative. The final recommendation for single board computer is the BeagleBone Green, to be paired with the Bela audio interface system. \$300 is recommended as the hardware development budget for the project.
+\end{abstract}
+
+\IEEEpeerreviewmaketitle
+
+
+\newpage
+
+\section{Introduction}
+The Audio Extravaganza project is a unique effort to help create a useful tool for musicians. There are a wide variety of barriers for creators and consumers alike in the music industry, ranging from financial means to technical expertise. This project aims to help all people interested in the creation of music be able to create unique sounds in an accessible format. Our team proposes to build a modular effects pedal that users can interface with to generate unique sounds while cultivating a captivating experience. This document will examine several candidate technologies to determine if they will be useful in the final product.
+
+\section{Single Board Computers}
+The basis for our project is a single board computer (SBC) which will power the actual effects processing and run the interface for our pedal. Using a generalized computer gives us a robust and versatile platform on which to build our software components, and the small form factor offered by single board computers will help reduce the size of our end product. Three single board computer solutions will be considered.
+In order to be considered, each solution should be able to support a Linux operating system to provide maximum flexibility in future development. Additionally, each system needs to have a relatively low effort method of sending and receiving audio signals. Audio processing does not necessarily need to be built in to the board, accessory boards and USB interfaces are also an option.
+
+
+To compare the boards, I will examine three variables concerning the boards' capabilities and developer experience. First, processor speed will be considered. Live audio effects put a significant load on CPU's, and part of our goals for this project is to provide as low latency as we can. Second, the diversity of extensions and accessories will be considered. With the open scope of our project, flexibility in the hardware platform will allow us to spend more of our time working on high level functionality rather than tinkering with configurations. Finally, I will briefly investigate available documentation for each board; both general use and setup documentation, and projects and tutorials similar to our final goal. Again, sufficient documentation will increase the flexibility of the platform and allow our team to invest more effort into higher level functionality. Table I summarizes the features of each SBC.
+
+
+\subsection{Raspberry Pi 3 Model B+} % https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/
+The Raspberry Pi is a pioneer SBC developed by the Raspberry Pi Foundation in the UK. Their latest offering, the Raspberry Pi 3 Model B+, offers improved processor speeds, faster Ethernet connectivity, and built in 5GHz WiFi \cite{raspberrypi}. 
+
+The new Raspberry Pi features a 64 bit quad-core processor running stock at 1.4GHz, which can be overclocked with appropriate cooling to run at 1.45GHz. Currently the officially supported operating system Raspbian is offered exclusively for 32 bit processors \cite{rpi:32bitonly}, and users report no discernible speed increase from the Pi Model B using Raspbian\cite{rpi:procspeed}. However, instructions for cross-compiling a 64 bit kernel specific to the 3B+ are readily available \cite{rpi:64bitkernel}, and multitudes of other well supported operating systems exist for the platform \cite{rpi:altos}.
+
+Since 2014, Raspberry Pi SBCs have had a set of standardized hardware extensions called HATs (Hardware Attached on Top) that interface with the form factor of the board, and plug directly into the integrated 40 pin GPIO\cite{rpi:hats}. There is no central listing of HATs, but several independent manufacturers create multiple products which meet the standard \cite{rpi:adahats}\cite{rpi:pimeroni}\cite{rpi:pihut}.
+
+Official documentation for the Raspberry Pi is provided by the Raspberry Pi Foundation \cite{rpi:docs}, and covers topics like initial setup and basic hardware interfacing. Several projects also exist that provide a subset of the features for this project including the PedalPi \cite{rpi:pedalpi} and Brian Benchoff's guitar effects processor \cite{rpi:benchoff}.
+
+
+\subsection{Beaglebone Green} % https://beagleboard.org/green
+BeagleBoard and SeeedStudio produce Beaglebone Green, a variation on the Beaglebone Black intended for use in IoT projects. Beaglebone Green swaps the Beaglebone Black's microHDMI port for two Grove connectors to better interface with SeeedStudio's modular sensor system. Additionally, Beaglebone Green substitutes the Beaglebone Black's miniUSB power connector for the more ubiquitous microUSB standard.\cite{bbg:info}
+
+All Beaglebone SBCs use the AM3358 processor from Texas Instruments. The processor's speed is capped at 1GHz, but includes an independently programmable co-processor optimized for "flexibility in implementing fast, real-time responses...and in offloading tasks from the other processor cores of SoC [System on Chip]."\cite{bbg:proc}
+
+Similar to the Raspberry Pi, Beaglebone products have integrated interface pins and a standard for hardware extensions called "capes". Compared to the Raspberry Pi selection is relatively limited, but lists of available capes exist\cite{bbg:capes}.
+
+Beagleboard provides getting started documentation for Beaglebone SBCs, and provides a list of books for supplemental reading\cite{bbg:docs}. Several pre-existing audio processing projects use Beaglebone SBCs as a platform such as MAKE magazine's BeagleBone Audio Looper\cite{bbg:looper}, and Bela\cite{bbg:bela}.
+
+
+\subsection{Asus Tinkerboard S} % https://www.asus.com/us/Single-Board-Computer/Tinker-Board-S/
+Tinkerboard S is an SBC produced by computer manufacturer Asus intended to provide a better developer experience than competitors\cite{tbs:info}. The Tinkerboard products use the same form factor as Raspberry Pi, and are intended to be used as a drop in replacement.
+The Tinkerboard platform is based on a quad-core 32bit processor capable of running at 1.8GHz, as well as 2GB of on-board memory.
+Since it uses the same form-factor as the Raspberry Pi, the Tinkerboard S is compatible with all Raspberry Pi HATs.
+Asus provides a user manual\cite{tbs:manual} for the Tinkerboard S, which consists of initial setup instructions and hardware diagrams, but community adoption is low and no audio-specific projects have been documented.
+
+\begin{table}[]
+\centering
+\begin{tabularx}{\linewidth}{X|X|X|X|}
+
+ & Raspberry Pi 3B+ & BeagleBone Green & Asus Tinkerboard S \\ \hline
+Processor Speed & 1.4GHz - 1.45GHz & 1GHz & 1.8GHz \\ \hline
+Hardware Accessories & HATs, hardware modules are commonly available and provide complex functionality & Capes, most modules provide low level functionality and sensor extensions & Compatible with Raspberry Pi HATs \\ \hline
+Documentation & Well documented, robust community, similar projects have been documented & Extensive documentation, similar projects have been done, but no documentation for them & Barebones manual, no active community \\ \hline
+Other Considerations &  & Co-processor optimized for real-time response &  \\ \hline
+\end{tabularx}
+\vspace{.1cm}
+\caption{Comparison chart for Single Board Computers}
+\label{my-label}
+\end{table}
+
+\section{Audio Cards}
+Given the generalized nature of single board computers, most offerings do not include analog audio inputs intended for audio processing. The right audio card, be it an external USB device or a platform-specific hardware extension, will allow us to easily reduce latency in our system and make a high quality processor possible. In addition, our audio card potentially limits our input and output choices, therefore limiting potential use cases for the final product. Table II summarizes the relevant factors of each audio card.
+
+\subsection{PiSound} % https://blokas.io/pisound/
+PiSound is a Raspberry Pi HAT produced by Blokas. PiSound is a pre-built solution that provides stereo and MIDI I/O alongside a high-quality and low-latency sound card built specifically for the Raspberry Pi. Additionally, PiSound provides out of the box compatibility with Pure Data, with a hardware button that allows users to trigger patches from a USB flash drive without any additional interfacing. PiSound supports a wide variety of Linux distributions, and is intended to work alongside Pure Data or SuperCollider to control effects processing. Additional interfaces take the form of the PiSound App, which shows real-time system logs and allows direct control over PureData patches. Blokas maintains getting-started tutorials \cite{pisound:docs} and has an active community \cite{pisound:forum}. 
+\subsection{Bela} % http://bela.io/
+Bela is a specialized BeagleBone cape and software combo that provides ultra-low latency (100us) audio with 8 channels of 16 bit analog I/O and 16 pins of 16 channel digital I/O. Intended for use with specialized real-time OS Xenomai Linux, Bela will interface directly with C/C++ as well as PureData and SuperCollider. Bela is designed to be used in embedded audio projects, and boasts a low-profile form factor. Getting started information and project examples are provided on the wiki \cite{bela:wiki}, and an active community can be found on the forums \cite{bela:forum}. Being an open source project, all associated source code and hardware specifications can be found in the Bela Github repository \cite{bela:repo}.
+\subsection{Expander Pi} % https://www.abelectronics.co.uk/p/50/expander-pi
+The Expander Pi is a Raspberry Pi HAT produced by AB Electronics \cite{expanderpi}. While not strictly an audio card, the Expander Pi allows the Raspberry Pi's GPIO (General Purpose In/Out) pins to be extended into 8 analogue inputs, 2 analogue outputs and 16 digital input or outputs. The card is powered by an integrated coin cell battery holder, and can be mounted directly to the board via a separately sold mounting kit.
+
+\begin{table}[]
+\centering
+\raggedright
+\begin{tabularx}{\linewidth}{X|X|X|X|}
+
+ & PiSound & Bela & Expander Pi \\ \hline
+Inputs & 24 Bit 1/4" I/O, Midi via Usb & 8 channel analog I/O, 16 pins of 16 channel digital I.O. & 16 channel digital I/O, 8 channel 12 bit analog input, 2 channel 12 bit analog output(DAC) \\ \hline
+Ease of integration & Plug and play solution, tight integration might be inflexible & Easy hardware setup, documentation for corresponding software &
+Hardware solution only, difficult software integration \\ \hline
+Documentation & Well documented, active community & Well documented, active community & No dedicated community or documentation \\ \hline
+
+\end{tabularx}
+\vspace{.1cm}
+\caption{Comparison chart for Audio Cards}
+\label{my-label}
+\end{table}
+
+\section{Budget Estimation}
+One of the metrics by which we are judging the success of our final product is cost of production. Before establishing our final budget, it is necessary to examine the functionality and price of "competing" products in order to get a realistic impression of our limits. This section will examine the feature sets of multi-effects pedals at a range of price points in order to price our intended feature set. Once the feature set is priced relative to other effects processors, we can determine a more realistic budget for our hardware. Table III summarizes the features of each product.
+
+\subsection{Behringer FX600: \$35 \cite{bfx600}}
+Coming in at \$35, the Behringer Digital Mulit-FX FX600 Guitar Multi-Effects Pedal provides a selection of 6 built-in effects with stereo input and output. It has no interface beyond a single indicator LED and the analog controls that can be used to select one of the effects and modify their parameters. While it has a DC power supply, it can also be powered with a standard 9-volt battery for untethered use. This pedal also has a dial to mix a processed and unprocessed signal, and a standard bypass feature.
+\subsection{Line 6 Helix Floor: \$1599 \cite{helix}}
+The current top of the line multi-effects pedal publicly available is the Line 6 Helix Floor model. The Helix allows users to load custom patches built on their proprietary software, as well as arrange setlists of these patches for rapid setup switches on-stage. The device itself has 12 footswitches, each lit by an individual programmable RGB LED and labelled by an OLED screen, and a built in expression pedal. These footswitches can either control a single effect such as distortion or a screamer, or trigger a set of effects. Each footswitch can individually switch between these two modes. Patch information is displayed on a large color LCD with a full operating system that can be navigated using a joystick interface. Beyond individual effects, the Helix also acts as an amp modelling pedal, allowing simulated amplifier setups to be emulated below the effects layer. Finally, the Helix has a USB interface that allows it to be used as a studio recording system for both guitars and microphone via a built-in microphone pre-amp.
+\subsection{Line 6 Firehawk: \$399.99 \cite{firehawk}}
+The Line 6 Firehawk is a combination effects pedal and amp modeller. With the same 12 buttons and expression pedal as the Helix, the Firehawk dispenses with programmable labels and only has analog controls for its tone control and relies on an external app for all of its configuration. The Firehawk comes preloaded with 128 presets and also gives the user access to a library of downloadable effects.
+\begin{table}[]
+\begin{tabularx}{\linewidth}{X|X|X|X|}
+ & Berhinger FX600 & Line 6 Firehawk & Line 6 Helix \\
+Price & \$35 & \$399.99 & \$1599 \\
+Battery & 9 Volt & N/A & N/A \\
+Footswitches & 1 & 12 & 12 \\
+Effects & 6 & 128 & 104 \\
+Looper & No & No & Yes \\
+Amp Modelling & No & Yes & Yes \\
+Programmable Switches & No & Limited & Yes \\
+External Interface & No & Mobile App & Desktop Software
+\end{tabularx}
+\vspace{0.1cm}
+\caption{Multi-effect pedal feature comparison}
+\label{my-label}
+\end{table}
+
+\section{Conclusion}
+I recommend using BeagleBone and Bela as the platform for our final project. The BeagleBone's secondary processor makes it uniquely suited for audio manipulation, and Bela provides a base level of functionality that we will need for our project. While the PiSound board is highly functional, much of the interface and input work already ships with the device making it much less flexible. Additionally, using Bela's pre-built audio systems allows us to invest more of our effort in interface and effect development to achieve a minimum viable product faster.
+
+Given the relative simplicity of our current specifications compared to the high end product I reviewed, I would recommend aiming for a final market price of about \$200 dollars. While our final feature list resembles that of the Line 6 Firehawk, a lower price point makes our project more accessible to musicians with fewer resources. With a final price of \$200, I recommend a development budget of around \$300. Just over half of that budget would be consumed by a Bela system, leaving about \$120 for additional hardware elements.
+\newpage
+
+\raggedright
+\begin{thebibliography}{1}
+\bibitem{raspberrypi}
+Adafruit Industries (2018). \textit{Raspberry Pi 3 - Model B+ - 1.4GHz Cortex-A53 with 1GB RAM.} [online] Adafruit.com. Available at: https://www.adafruit.com/product/3775?src=raspberrypi [Accessed 2 Nov. 2018].
+
+\bibitem{rpi:procspeed}
+ Beorn\_Bear (2018) \textit{64-bit operating system - Raspberry Pi Forums.} [online forum post] RaspberryPi.org. Available at: https://www.raspberrypi.org/forums/viewtopic.php?t=208314 [Accessed 2 Nov. 2018].
+
+\bibitem{rpi:32bitonly}
+  Brown E. (2016) \textit{Raspberry Pi 3 has 64-bit CPU, but 32-bit Rasbian OS (for now).} [online blog post] linuxgizmos.com. Available at:
+http://linuxgizmos.com/raspberry-pi-3-has-a-64-bit-cpu-but-a-32-bit-raspbian-os/ [Accessed 2 Nov. 2018]
+
+\bibitem{rpi:64bitkernel}
+  Amarni B. (2016) \textit{Build a 64-bit Kernal for Your Raspberry Pi 3.} [online blog post] devsidestory.com. Available at: https://devsidestory.com/build-a-64-bit-kernel-for-your-raspberry-pi-3/ [Accessed 2 Nov. 2018]
+
+\bibitem{rpi:altos}
+ eLinux Community. (2018) \textit{RPi Distributions.} [online] elinux.org. Available at: https://elinux.org/RPi\_Distributions [Accessed 2 Nov. 2018]
+
+\bibitem{rpi:hats}
+ Raspberry Pi Foundation. (2018) \textit{Introducing Raspberry Pi Hats.} [online blog post] Raspberry Pi Foundation. Available at: https://www.raspberrypi.org/blog/introducing-raspberry-pi-hats/ [Accessed 2 Nov. 2018]
+
+\bibitem{rpi:adahats}
+ Adafruit Industries. (2018) \textit{Pi Hats & Bonnets & Addons Product Category.} [online shop] Adafruit Industries. Available at: https://www.adafruit.com/category/286 [Accessed 2 Nov. 2018]
+
+\bibitem{rpi:pimeroni}
+ Pimeroni Ltd. (2018) \textit{HATs & pHATs for Raspberry Pi Product Category.} [online shop] Pimeroni Ltd. Available at: https://shop.pimoroni.com/collections/hats [Accessed 2 Nov. 2018]
+ 
+\bibitem{rpi:pihut}
+ The PiHut. (2018) \textit{Raspberry Pi HATs & GPIO Product Category.} [online shop] The Pi Hut Ltd. Available at https://thepihut.com/collections/raspberry-pi-hats [Accessed 2 Nov. 2018]
+
+\bibitem{rpi:docs}
+ Raspberry Pi Foundation. (2018) \textit{Raspberry Pi Documentation.} [online] Raspberry Pi Foundation. Available at: https://www.raspberrypi.org/documentation/ [Accessed 2 Nov. 2018]
+ 
+\bibitem{rpi:pedalpi}
+ ElectroSmash. (2018) \textit{Pedal PI - Raspberry Pi ZERO Guitar Pedal.} [online] ElectroSmash. Available at: https://www.electrosmash.com/pedal-pi [Accessed 2 Nov. 2018]
+ 
+\bibitem{rpi:benchoff}
+ Benchoff B. (2013) \textit{Raspberry Pi Becomes a Guitar Effects Processor.} [online blog post] Hackaday.com. Available at: https://hackaday.com/2013/01/28/raspberry-pi-becomes-a-guitar-effects-processor/ [Accessed 2 Nov. 2018]
+
+\bibitem{bbg:info}
+ BeagleBoard.org Foundation. (2018) \textit{SeeedStudio BeagleBone Green Product Listing.} [online shop] BeagleBoard.org. Available at: https://beagleboard.org/green [Accessed 2 Nov. 2018]
+
+\bibitem{bbg:proc}
+ Texas Instruments. (2018) \textit{AM3358 Sitara Processor: ARM Cortex-A8, 3D Graphics, PRU-ICSS.} [online shop] Texas Instruments. Available at: http://www.ti.com/product/am3358 [Accessed 2 Nov. 2018]
+
+\bibitem{bbg:capes}
+ eLinux Community. (2018) \textit{Beagleboard:BeagleBone Capes.} [online] eLinux.org. Available at: https://elinux.org/Beagleboard:BeagleBone\_Capes [Accessed 2 Nov. 2018]
+
+\bibitem{bbg:docs}
+BeagleBoard.org Foundation. (2018) \textit{Start your Beagle.} [online] BeagleBoard.org. Available at: http://beagleboard.org/static/beaglebone/latest/README.htm [Accessed 2 Nov. 2018]
+
+\bibitem{bbg:looper}
+ Worman T. (2014) \textit{BeagleBone Audio Looper.} [online blog post] makezine.com. Available at: https://makezine.com/projects/beaglebone-audio-looper/ [Accessed 2 Nov. 2018]
+
+\bibitem{bbg:bela}
+ McPherson A. et al. (2014) \textit{Bela: An embedded platform for ultra-low latency interactive audio.} [online] instrumentslab.org. Available at: http://instrumentslab.org/research/bela.html [Accessed 2 Nov. 2018]
+ 
+\bibitem{tbs:info}
+ASUSTeK Computer Inc. (2018) \textit{Tinker Board S.} [online] asus.com. Available at: https://www.asus.com/us/Single-Board-Computer/Tinker-Board-S/ [Accessed 2 Nov. 2018]
+
+\bibitem{tbs:manual}
+ASUSTeK Computer Inc. (2018) \textit{Tinker Board S User\'s Manual.} [online] asus.com. Available at: https://www.asus.com/ae-en/Single-Board-Computer/Tinker-Board-S/HelpDesk\_Manual/ [Accessed 2 Nov. 2018]
+
+\bibitem{bela:wiki}
+Bela Community. (2018) \textit{Getting started with Bela.} [online wiki] github.com. Available at: https://github.com/BelaPlatform/Bela/wiki/Getting-started-with-Bela [Accessed 2 Nov. 2018]
+
+\bibitem{bela:forum}
+Bela Community. (2018) \textit{Bela Community Forum.} [online forum] bela.io. Available at: http://forum.bela.io/ [Accessed 2 Nov. 2018]
+
+\bibitem{bela:repo}
+Bela Source Repository. (2018) \textit{Bela Platform.} [git repository] github.com. Available at: https://github.com/belaPlatform [Accessed 2 Nov. 2018]
+
+\bibitem{expanderpi}
+Apexweb Ltd. (2018) \textit{Expander Pi - Digital IO, ADC, DAC and RTC for the Raspberry Pi.} [online shop] AB Electronics. Available at: https://www.abelectronics.co.uk/p/50/expander-pi [Accessed 2 Nov. 2018]
+
+\bibitem{bfx600}
+Guitar Center. (2018) \textit{Behringer Digital Mulit-FX FX600 Guitar Multi-Effects Pedal Product Listing.} [online shop] guitarcenter.com. Available at: https://www.guitarcenter.com/Behringer/Digital-Mulit-FX-FX600-Guitar-Multi-Effects-Pedal.gc [Accessed 2 Nov. 2018]
+
+\bibitem{helix}
+Line 6. (2018) \textit{Line 6 Helix Products} [online shop] line6.com. Available at: https://line6.com/helix/ [Accessed 2 Nov. 2018]
+
+\bibitem{firehawk}
+Guitar Center. (2018) \textit{Line 6 Firehawk FX Guitar Multi-Effects Product Listing.} [online shop] guitarcenter.com. Available at:  https://www.guitarcenter.com/Line-6/Firehawk-FX-Guitar-Multi-Effects.gc [Accessed 2 Nov. 2018]
+
+\bibitem{pisound:forum}
+Blokas Community. (2018) \textit{PiSound Community Forum.} [online forum] blokas.io. Available at: https://community.blokas.io/ [Accessed 2 Nov. 2018]
+
+\bibitem{pisound:docs}
+Blokas. (2018) \textit{Pisound Docs.} [online] blokas.io. Available at: https://blokas.io/pisound/docs/ [Accessed 2 Nov. 2018]
+\end{thebibliography}
+
+\end{document}
