@@ -901,4 +901,23 @@ DAMLooper : DAMChain {
 		"Update state override working".postln;
 
 	}
+
+	/******************************************************************
+	Free
+		Frees local synth
+	*******************************************************************/
+	kill{
+		if(this.playSynth != nil){
+			this.playSynth.free;
+			this.playSynth = nil;
+		};
+		if(this.recSynth != nil) {
+			this.recSynth.free;
+			this.recSynth = nil;
+		};
+		if(this.buffer != nil){
+			this.buffer.free;
+			this.buffer = nil;
+		};
+	}
 }

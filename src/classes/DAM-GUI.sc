@@ -633,23 +633,40 @@ DAMGUI {
 
 		this.win.view.keyDownAction = {
 			arg view, char, mod, uni, keycode, key;
-			var hold, off;
-			hold = mod == 131072;
-			off = mod == 262144;
+			var hold, off, holdM, offM;
+			hold = (mod == 131072);
+			off = (mod == 262144);
+			holdM = (mod == 1048576);
+			offM = (mod == 131072);
+			// keycode.postln;
+			// mod.postln;
 			case
-				{keycode == 49} {this.pedals[0].toggle(hold, off);}
-				{keycode == 50} {this.pedals[1].toggle(hold, off);}
-				{keycode == 51} {this.pedals[2].toggle(hold, off);}
-				{keycode == 65} {this.knobs.[0].inc(false, hold, off);}
-				{keycode == 83} {this.knobs.[0].inc(true, hold, off);}
-				{keycode == 68} {this.knobs.[1].inc(false, hold, off);}
-				{keycode == 70} {this.knobs.[1].inc(true, hold, off);}
-				{keycode == 71} {this.knobs.[2].inc(false, hold, off);}
-				{keycode == 72} {this.knobs.[2].inc(true, hold, off);}
-				{keycode == 74} {this.knobs.[3].inc(false, hold, off);}
-				{keycode == 75} {this.knobs.[3].inc(true, hold, off);}
-				{keycode == 188} {this.menu.left()}
-				{keycode == 190} {this.menu.right()}
+				{keycode == 49  } {this.pedals[0].toggle(hold, off);}
+				{keycode == 50  } {this.pedals[1].toggle(hold, off);}
+				{keycode == 51  } {this.pedals[2].toggle(hold, off);}
+				{keycode == 65  } {this.knobs.[0].inc(false, hold, off);}
+				{keycode == 83  } {this.knobs.[0].inc(true, hold, off);}
+				{keycode == 68  } {this.knobs.[1].inc(false, hold, off);}
+				{keycode == 70  } {this.knobs.[1].inc(true, hold, off);}
+				{keycode == 71  } {this.knobs.[2].inc(false, hold, off);}
+				{keycode == 72  } {this.knobs.[2].inc(true, hold, off);}
+				{keycode == 74  } {this.knobs.[3].inc(false, hold, off);}
+				{keycode == 75  } {this.knobs.[3].inc(true, hold, off);}
+				{keycode == 188 } {this.menu.left()}
+				{keycode == 190 } {this.menu.right()}
+				{keycode == 18} {this.pedals[0].toggle(holdM, off);}
+				{keycode == 19} {this.pedals[1].toggle(holdM, off);}
+				{keycode == 20} {this.pedals[2].toggle(holdM, off);}
+				{keycode == 0 } {this.knobs.[0].inc(false, holdM, offM);}
+				{keycode == 1 } {this.knobs.[0].inc(true, holdM, offM);}
+				{keycode == 2 } {this.knobs.[1].inc(false, holdM, offM);}
+				{keycode == 3 } {this.knobs.[1].inc(true, holdM, offM);}
+				{keycode == 5 } {this.knobs.[2].inc(false, holdM, offM);}
+				{keycode == 4 } {this.knobs.[2].inc(true, holdM, offM);}
+				{keycode == 38} {this.knobs.[3].inc(false, holdM, offM);}
+				{keycode == 40} {this.knobs.[3].inc(true, holdM, offM);}
+				{keycode == 43} {this.menu.left()}
+				{keycode == 47} {this.menu.right()}
 			;
 		};
 

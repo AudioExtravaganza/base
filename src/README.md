@@ -14,14 +14,15 @@ The DAM GUI is a virtual implementation of the DAM Good Pedal.
   - Make sure to copy `DAM-GUI.sc` and `DAMPedalController.sc` to your supercollider extensions file.
     - To find the location of this file, you can use `Platform.userExtensionDir` or `Platform.systemExtensionDir` in supercollider.
   - Once that is added to your extension folder, use the keystroke `ctrl-shift-l` in supercollider to recompile the class library.
+  - Make sure that Jack Server is activated, use the command ```jack_control start```
 
 
 ## How to Run
   - Open gui.scd with SuperCollider. Run the file:
-    - With cursor in text editor use keystroke `Ctrl-Enter`
-    - OR select `Language->Evaluate File`
+  -   With cursor in text editor use keystroke `Ctrl-Enter`
+  -   OR select `Language->Evaluate File`
   - On Linux, use the command: ```sclang -u 57120 gui.scd``` to run the program
-
+![running-terminal](Program_Running.png)
 
 ## How To Use
   - Once running the following window should appear, and audio should be playing. ![gui-screenshot](GUI.JPG)
