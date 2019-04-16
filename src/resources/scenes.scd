@@ -31,7 +31,7 @@
 
 
 ~temp = DAMScene.new();
-~temp.prebuild('| Phaser | Chorus | Delay');
+~temp.prebuild('Phaser | Chorus | Delay');
 
 ~tempChain = DAMChain.new();
 ~tempChain.preBuild('DAMPhaser', [true, true, false, false]);
