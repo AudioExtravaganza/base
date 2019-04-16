@@ -1,0 +1,106 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{cite}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=c,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+
+\newcommand{\NameSigPair}[1]{\par
+  \makebox[2.75in][r]{#1} \hfil \makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+  \makebox[2.75in]{} \hfil\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill\makebox[.75in][r]{Date}}}}
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        \hfill 
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge Senior Software Engineering Project - Fall 2018 \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge Tech Review}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge Oregon State University\par
+            \vspace{5pt}
+            {\Large\NameSigPair{Kirsten Winters and Kevin McGrath}\par}
+            {\large Prepared by }\par
+            Ben Windheim\par
+            \vspace{5pt}
+            \vspace{20pt}
+        }
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+
+% 8. now you write!
+\section{Intro}
+	The Group 26 Audio Extravaganza project for the Senior Software Engineering Project involves building a modulation and looper device for manipulating and applying effects to an input source in a compact and versatile method. Pulling from our problem statement, an effective way to prove a high-level view is as follows: We need new ways to make new sounds in a impressive format that is accessible, portable, affordable, and usable. While this is a vague description, it sets the stage for a wide set new music-based technology, designed to reach individuals in a variety of sectors. The final product for our project will be a modular digital effects processing pedal that receives and modifies the sound of an instrument or microphone paired with a loop module with which users can record and playback their input, allowing them to build complex rhythms and melodies with a single input, with possibilities for implementing an external interface for added control. While it is incredibly important to tangibly demonstrate that there is a problem to fix and that there is a solution, there is a gap of knowledge where we need to consider how we will implement these goals and what kind of technology is needed to do so. This paper is an attempt to dissect a few key areas of the project and devise a technological building block and comparison tool to determine the direction and implementation of the project. In this document, we will look at general-purpose input/output and other kinds of knobs, control layout for effects, and onboarding software for eventual VST development.
+\subsection{Role}
+    While our team has not formally defined roles at this time, it is important to recognize strengths and areas where one teammate has more expertise or drive than the others. My experience resides as someone with proficient software development skills, a swath of live performance experiences, extensive audio engineering and sound design research and production, and a creative drive to make something unique. Therefore, I see my role as a creative direction influence, contributing highly to the algorithmic choices and technological design decisions with digital sound, the usability decisions, and the performance prioritization of the device. That said, all of our team has influence in all areas and many areas will be shared as a team. 
+
+
+\section{Input and Output Parameter Controls and Knobs}
+	One of the driving hardware points for the development of our product is the integration of knobs to actively affect input parameters at run time. While the group as a whole is highly proficient in areas such as software engineering, logic, and audio engineering, we run into a gap in knowledge when approaching hardware integrations and migrations for realizing the engineering work done prior. General-purpose input/output (GPIO) is the mechanism in which pins affect an uncommitted digital signal on an integrated circuit to control behavior of an input or an output signal at run time. This is incredibly valuable and, in general, is a very widely used concept in circuit technology most often integrated as a knob. Even more useful is the fact that there is no predefined behavior with these mechanisms, and the realized behavior is defined by the developers and designers. This integration often requires some more extensive knowledge in assembly circuitry, but this team should be able to find ways to successfully integrate such knobs, even if we are somewhat limited in the scope of what we can handle.
+\subsection{GPIO Knobs}
+	Implementing a knob on a Raspberry Pi or a similar device is not quite as simple as connecting a rotator to a pin, as there’s a fair amount of overhead and manipulation of our GPIO pins required. While when dealing with analog signals, a knob is a simple attenuator determining how much of a signal is reaching the output side, and we need to look at other options for digital signal. One option is to implement a rotary encoder. One stark difference between a rotary encoder and a typical analog knob is the feeling of steps - that is, this is not a smooth operation and instead involves stepping up and down iteratively, while still retaining some smooth qualities. A rotary encoder also does not have a limit to how much it can be turned, and any maximum and minimum limits need to be coded and displayed rather than felt. To do this, one needs to hook up three GPIO pins, for increasing, decreasing, and a ground connection respectively. We then write a daemon script that runs upon booting that listens for change in signal from these pins, where we can then send it to alter parameters in our effect classes, however we may implement those. We will have to take extra care to document exactly where we hook in our GPIO pin connectors, as the more knobs we add, the more the pins will become abstract and hard to track\cite{GPIO}.
+\subsection{Circuit Board and Attenuaters}
+	Another way to approach controlling input and output parameters is by using a circuit board, some sort of storage device for holding the loop and programmable logic, and actual analog potentiometers that communicate with firmware before the analog to digital converter. These would not be hardwired to specific software parameters, so it would have the added bonus of being able to quickly cycle through effects without having different layouts for each effect, thus reducing the volumetric footprint of the device as well as increasing its customization and repurposing capabilities\cite{Proto}.
+\subsection{GPIO Switches}
+	A third option would be to limit our GPIO pins to acting strictly as binary on and off switches, and having either an onboard or external interface be the controls for the actual parameters and effect cycling, operating more as a controller for a VST rather than an electrically-based unit. This would be more of a safe engineering option for our current skillsets, but the implementation would likely be lacking for more experienced performers. Similarly to the first tech option, this would involve connecting a hardware switch to our pins, but this would have the added benefit of only requiring two pins, one for the ground and one for the control itself. 
+\subsection{Recommendation}
+    In reality, the best option for integrating hardware controls and switches is likely a combination of the above three options, and perhaps some use of other emerging technologies we have not yet further explored. There is certainly a desirability for having physical control, but the potential for external interfacing is an exciting way to make a unique and versatile product. The solution with the most potential for getting a quality feel from the controls in a more affectionate manner to the input signal would be to implement a circuit board with analog attenuaters. While the initial tuning to have these converters working correctly would be more work up front, the results would keep the programming involved to algorithmic choices in C to increase the quality of our product and would allow for a simpler interface on the hardware side. 
+
+\section{Control Layout}
+	Control design and layout is a crucial aspect of our project and makes up a large portion of our requirements laid out in our requirements document. They are also highly dependent on the implementation choices we make to integrate physical controls, and in the same sense are very influential to the way we integrate physical controls. Here, we will explore three different options for designing our device, each lined up respectively with the three tech options explored in the general-purpose input/output section. 
+\subsection{GPIO LED Display, Reusable Controls}
+	One approach is to have a highly functional in-house unit that uses GPIO pins to control input parameters. We could have a display preloaded with the different kind of effects, with different parameter knobs. The Nux Time Force is a great example of how we could implement a pedal like this, where we have multipurpose switches and knobs that can be applied to different effects based on what is engaged. The LCD screen can give a graphical representation of how we are using the sound, and the knobs can act as an interface. This gives the product a digital feel while still retaining its ability to be controlled by foot \cite{NUX}.
+\subsection{Circuit Board with Potentiometers}
+	Another approach is to use a memory storage and integrated circuit to avoid having any sense of the digital feel and make the pedal more in line with typical guitar pedals using analog potentiometers. There would be no display, and the result could have a better analog-to-digital conversion. The button layout would have to be very simple and would have to clearly relay what everything was doing without having a display. This would be a layout more tailored to experienced guitarists looking for a quick new tool to learn and add to their set up of effects, and could potentially allow for more zany effects due to the nature of the use (more nuanced and less calculated). This would require more experimentation in the electrical engineering realm, but the results could be more unique and rugged\cite{Proto}. 
+\subsection{Binary GPIO Switches with External Interface}
+	Finally, we could look at having our button layout be strictly on/off switches for different effect parameters, and having a on-board display showing a simplified representation of our effect. These switches can have a wider footprint and be interchangeable based on the effect, and be mostly used for cycling between pots of effects and layering different combinations of effects. The actual effect parameters would be affected by the external interface, that is communicating via some wired or wireless connection. This would be the most innovative approach, with a higher level of uncertainty or design templates to build off of. However, this could prove to be the most versatile option. 
+\subsection{Recommendation}
+    Similar to the previous section regarding how exactly we will implement a control interface, the best way to implement a usable yet versatile control surface is highly dependent on the underlying architecture, and is likely a combination of several different approaches. To echo the previous sentiment, keeping as much signal analog until the last possible moment will keep our signal warm, full, and eliminate loss to the best of our ability. Thus, keeping a circuit board with analog potentiometers seems to be the most attractive. However, to encourage scalability, loadability, and other plug-and-play characteristics, some discussions should be had to determine where and when we can diverge. 
+
+\section{VST Implementation}
+	A stretch goal for our project was to look into implementing our audio-manipulation logic to fit into a digital audio workstation, also known as a DAW. Implementing our device as a Virtual Studio Technology (VST) plugin is a challenge that will be likely partly determined by our choices in implementing physical hardware. It’s highly likely that if we include an external interface or have a Raspberry Pi operating our effect board, the code will behave a lot like a VST already as it is simply a program accepting audio input and applying parameters to churn an output. There would be some overhead in designing a graphic interface more designed for computer use rather than use of knobs, but the program logic will be a simple migration to the format needed. These are typically built in C++, so writing our interface in C++ would make that a very simple procedure. Of course, if we choose to use a more analog approach and keep our code operating based on potentiometers, there will be a significant level of conversion and experimentation to create a similar effect in a VST. Writing for a circuit board would likely be done in C instead of C++, so there would be some minor changes in implementation styles, but the general logic would remain. Finally, we could choose to approach the VST entirely separately and attempt to implement the same styles of sounds using similar logic and construction. This is done in a fairly complex development environment using Xcode or VisualC++, but the advantage is this can give a more complete VST product rather than just something more simply usable\cite{Plugin}. 
+	
+\section{Conclusion}
+Clearly, there are many options for how we can approach our input and output knobs, how we can lay the controls out in the most conducive way, and how we can work on bring that to a software production platform rather than performance-based. As we work on our tech reviews, we can further decide what the best option for us is. With the recommendations listed, we can further compile our experiences and findings to determine the final approach we have to integrating our device in hardware and in VST software. 
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{./refs.bib}
+
+\end{document}
