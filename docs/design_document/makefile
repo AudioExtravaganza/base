@@ -1,4 +1,4 @@
-LATEX	= pdflatex -shell-escape
+LATEX	= latex -shell-escape
 BIBTEX	= bibtex
 DVIPS	= dvips
 DVIPDF  = dvipdft

@@ -18,40 +18,41 @@
     %     As stated in section \ref{desc:context}, the primary concern is that the experience of actors should not inhibit their ability to use the product.
     %     The product targets one user, so each use case will only have one actor.
         
-    \subsubsection{Elements}
-        \paragraph{Switch subsystem}
-           The user shall be able to switch between looping subsystem and modulation subsystem.
+    % \subsubsection{Elements}
+    %     \paragraph{Switch subsystem}
+    %       The user shall be able to switch between looping subsystem and modulation subsystem.
           
-                \begin{figure}[!ht]
-                    \centering
-                    \includegraphics[width=.5\textwidth]{diagrams/use_cases/uc-switch.JPG}
-                    \caption{Switch subsystem use case}
-                    \label{fig:uc-switch}
-                \end{figure}
-        \clearpage
-        \begin{table}[!ht]
-            \centering
-            \begin{tabular}{ l l  }
-                Use Case & Switch subsystem  \\
-                \hline \\
-                Use Case Number & 1 \\ \\
-                Summary & Musician can switch between the looping subsystem and the modulation subsystem. \\ \\
-                Actor & Musician \\ \\
-                Trigger & Hardware input: button or switch \\ \\
+    %             \begin{figure}[!ht]
+    %                 \centering
+    %                 \includegraphics[width=.5\textwidth]{diagrams/use_cases/uc-switch.JPG}
+    %                 \caption{Switch subsystem use case}
+    %                 \label{fig:uc-switch}
+    %             \end{figure}
+    %     \clearpage
+    %     \begin{table}[!ht]
+    %         \centering
+    %         \begin{tabular}{ | p{0.2\linewidth} | p{0.7\linewidth} |  } 
+    %             \hline
+    %             Use Case & Switch subsystem  \\ \hline
+    %             \hline
+    %             Use Case Number & 1 \\ \hline
+    %             Summary & Musician can switch between the looping subsystem and the modulation subsystem. \\ \hline
+    %             Actor & Musician \\ \hline
+    %             Trigger & Hardware input: button or switch \\ \hline
                 
-                Pre-Conditions & The pedal must be in either the looping subsystem or the modulation subsystem  \\ \\
-                Post-Conditions & If the pedal was initially in the modulation system, it must be in the looping system. \\ 
-                & If the pedal was initially in the looping system, it must be in the modulation system. \\ \\
-                Assumptions & The pedal is powered on \\ \\
-            \end{tabular}
-            % \\
-            % \caption{Use case: Switch subsystem}
-            % \label{tab:uc-switch}
-        \end{table}
+    %             Pre-Conditions & The pedal must be in either the looping subsystem or the modulation subsystem  \\ \hline
+    %             Post-Conditions & If the pedal was initially in the modulation system, it must be in the looping system. \\ 
+    %             & If the pedal was initially in the looping system, it must be in the modulation system. \\ \hline
+    %             Assumptions & The pedal is powered on \\ \hline
+    %         \end{tabular}
+    %         \\
+    %         \caption{Use case: Switch subsystem}
+    %         \label{tab:uc-switch}
+    %     \end{table}
 
         \paragraph{Start recording audio} 
         The user shall be able to record audio to playback later.
-                    \begin{figure}[!ht]
+        \begin{figure}[!ht]
                 \centering
                 \includegraphics[width=.5\textwidth]{diagrams/use_cases/uc-record-start.JPG}
                 \caption{Start recording audio use case}
@@ -59,20 +60,21 @@
             \end{figure}
         \begin{table}[!ht]
             \centering
-            \begin{tabular}{ l  l  }
-                Use Case & Start recording audio  \\ \hline \\
-                Use Case Number & 2 \\ \\
-                Summary & Musician can start recording audio. \\ \\
-                Actor & Musician \\ \\
-                Trigger & Hardware input: pedal toggle \\ \\
-                Pre-Conditions & The pedal must be in the looping subsystem. \\
-                & The looping subsystem must not already be recording. \\ \\
-                Post-Conditions & The looping subsystem will be recording incoming audio. \\ \\
-                Assumptions & The user has audio input plugged in.\\
+            \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                \hline
+                Use Case & Start recording audio  \\ \hline \hline
+                Use Case Number & 2 \\ \hline
+                Summary & Musician can start recording audio. \\ \hline
+                Actor & Musician \\ \hline
+                Trigger & Hardware input: pedal toggle \\ \hline
+                Pre-Conditions & The pedal employ the looping subsystem. \\
+                & The looping subsystem must not already be recording. \\ \hline
+                Post-Conditions & The looping subsystem will be recording incoming audio. \\ \hline
+                Assumptions & The user has audio input plugged in.\\ \hline
             \end{tabular}
-            % \\
-            % \caption{Use case: Start recording audio}
-            % \label{tab:uc-record-start}
+            \\
+            \caption{Use case: Start recording audio}
+            \label{tab:uc-record-start}
         \end{table}
         
         \clearpage
@@ -87,21 +89,22 @@
             
             \begin{table}[!ht]
                 \centering
-                \begin{tabular}{ l  l }
+                \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                    \hline
                     Use Case & Stop recording audio  \\
-                    \hline \\
-                    Use Case Number & 3 \\ \\
-                    Summary & Musician can stop recording audio. \\ \\
-                    Actor & Musician \\ \\
-                    Trigger & Hardware input: pedal toggle \\ \\
+                    \hline \hline
+                    Use Case Number & 3 \\ \hline
+                    Summary & Musician can stop recording audio. \\ \hline
+                    Actor & Musician \\ \hline
+                    Trigger & Hardware input: pedal toggle \\ \hline
                     Pre-Conditions & The pedal must be in the looping subsystem. \\
-                    & The looping subsystem must be recording audio. \\ \\
-                    Post-Conditions & The looping subsystem will cache the recorded audio. \\ \\
-                    Assumptions & The user has audio input plugged in.\\ 
+                    & The looping subsystem must be recording audio. \\ \hline
+                    Post-Conditions & The looping subsystem will cache the recorded audio. \\ \hline
+                    Assumptions & The user has audio input plugged in.\\ \hline
                 \end{tabular}
-                % \\
-                % \caption{Use case: Stop recording audio}
-                % \label{tab:uc-record-stop}
+                \\
+                \caption{Use case: Stop recording audio}
+                \label{tab:uc-record-stop}
             \end{table}
  
       
@@ -116,21 +119,22 @@
             \clearpage
             \begin{table}[!ht]
                 \centering
-                \begin{tabular}{l l}
+                \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                    \hline
                     Use Case & Start audio playback \\ 
-                    \hline \\
-                    Use Case Number & 4 \\ \\
-                    Summary & Musician can start playing back audio. \\ \\
-                    Actor & Musician \\ \\
-                    Trigger & Hardware input: pedal toggle \\ \\
+                    \hline \hline 
+                    Use Case Number & 4 \\ \hline
+                    Summary & Musician can start playing back audio. \\ \hline
+                    Actor & Musician \\ \hline
+                    Trigger & Hardware input: pedal toggle \\ \hline
                     Pre-Conditions & The pedal must be in the looping subsystem. \\
-                    & The looping subsystem must have audio cached. \\ \\
-                    Post-Conditions & The looping subsystem will begin audio playback. \\ \\
-                    Assumptions & None.\\ 
+                    & The looping subsystem must have audio cached. \\ \hline
+                    Post-Conditions & The looping subsystem will begin audio playback. \\ \hline
+                    Assumptions & None. \\ \hline
                 \end{tabular}
-                % \\
-                % \caption{Use case: Start audio playback}
-                % \label{tab:uc-play-start}
+                \\
+                \caption{Use case: Start audio playback}
+                \label{tab:uc-play-start}
             \end{table}
             
             \paragraph{Stop audio playback} 
@@ -143,22 +147,23 @@
             \end{figure}
             \begin{table}[!ht]
                 \centering
-                \begin{tabular}{l l}
+                \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                    \hline
                     Use Case & Stop audio playback \\ 
-                    \hline \\ 
-                    Use Case Number & 5 \\ \\
-                    Summary & Musician can stop audio playback. \\ \\
-                    Actor & Musician \\ \\
-                    Trigger & Hardware input: pedal toggle \\ \\
+                    \hline \hline
+                    Use Case Number & 5 \\ \hline
+                    Summary & Musician can stop audio playback. \\ \hline
+                    Actor & Musician \\ \hline
+                    Trigger & Hardware input: pedal toggle \\ \hline
                     Pre-Conditions & The pedal must be in the looping subsystem. \\
                     & The looping subsystem must have audio cached. \\
-                    & The looping subsystem must be currently playing audio back \\ \\
-                    Post-Conditions & The looping subsystem will stop audio playback. \\ \\
-                    Assumptions & None.\\
+                    & The looping subsystem must be currently playing audio back \\ \hline
+                    Post-Conditions & The looping subsystem will stop audio playback. \\ \hline
+                    Assumptions & None.\\ \hline
                 \end{tabular}
-                % \\
-                % \caption{Use case: Stop audio playback}
-                % \label{tab:uc-play-stop}
+                \\
+                \label{tab:uc-play-stop}
+                \caption{Use case: Stop audio playback}
             \end{table}
             
             \clearpage
@@ -174,21 +179,22 @@
             
             \begin{table}[!ht]
                 \centering
-                \begin{tabular}{l l}
+                \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                    \hline
                     Use Case & Select effect \\
-                    \hline \\
-                    Use Case Number & 6 \\ \\
-                    Summary & Musician can select an effect to use on the pedal. \\ \\
-                    Actor & Musician \\ \\
-                    Trigger & Hardware input: selector \\ \\
+                    \hline \hline
+                    Use Case Number & 6 \\ \hline
+                    Summary & Musician can select an effect to use on the pedal. \\ \hline
+                    Actor & Musician \\ \hline
+                    Trigger & Hardware input: selector \\ \hline
                     Pre-Conditions & The pedal must be in the modulation subsystem. \\
-                    & The audio effect library must have effects. \\ \\
-                    Post-Conditions & The modulation subsystem will load an effect to a cache. \\ \\
-                    Assumptions & None.\\ \\
+                    & The audio effect library must have effects. \\ \hline
+                    Post-Conditions & The modulation subsystem will load an effect to a cache. \\ \hline
+                    Assumptions & None.\\ \hline
                 \end{tabular}
-                % \\
-                % \caption{Use case: Select effect}
-                % \label{tab:uc-select-effect}
+                \\
+                \caption{Use case: Select effect}
+                \label{tab:uc-select-effect}
             \end{table}            
             
             \paragraph{Start effect} 
@@ -202,21 +208,22 @@
             \clearpage
             \begin{table}[!ht]
                 \centering
-                \begin{tabular}{l l}
+                \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                    \hline
                     Use Case & Start effect \\
-                    \hline \\
-                    Use Case Number & 7 \\ \\
-                    Summary & Musician can start using an effect to modulate incoming audio. \\ \\
-                    Actor & Musician \\ \\
-                    Trigger & Hardware input: pedal toggle \\ \\
+                    \hline \hline
+                    Use Case Number & 7 \\ \hline
+                    Summary & Musician can start using an effect to modulate incoming audio. \\ \hline
+                    Actor & Musician \\ \hline
+                    Trigger & Hardware input: pedal toggle \\ \hline
                     Pre-Conditions & The pedal must be in the modulation subsystem. \\
-                    & The corresponding pedal toggle must have an effect cached. \\ \\
-                    Post-Conditions & The modulation subsystem will start modulating incoming audio. \\ \\
-                    Assumptions & An incoming audio signal exists.\\ \\
+                    & The corresponding pedal toggle must have an effect cached. \\ \hline
+                    Post-Conditions & The modulation subsystem will start modulating incoming audio. \\ \hline
+                    Assumptions & An incoming audio signal exists.\\ \hline
                 \end{tabular}
-                % \\
-                % \caption{Use case: Start effect}
-                % \label{tab:uc-start-effect}
+                \\
+                \caption{Use case: Start effect}
+                \label{tab:uc-start-effect}
             \end{table}     
             
             \paragraph{Stop effect} 
@@ -229,21 +236,22 @@
             \end{figure}
             \begin{table}[!ht]
                 \centering
-                \begin{tabular}{l l}
+                \begin{tabular}{| p{0.2\linewidth} | p{0.7\linewidth} |}
+                    \hline
                     Use Case & Stop effect \\
-                    \hline \\
-                    Use Case Number & 8 \\ \\
-                    Summary & Musician can stop using an effect to modulate incoming audio. \\ \\
-                    Actor & Musician \\ \\
-                    Trigger & Hardware input: pedal toggle \\ \\
+                    \hline \hline
+                    Use Case Number & 8 \\ \hline
+                    Summary & Musician can stop using an effect to modulate incoming audio. \\ \hline
+                    Actor & Musician \\ \hline
+                    Trigger & Hardware input: pedal toggle \\ \hline
                     Pre-Conditions & The pedal must be in the modulation subsystem. \\
-                    & An effect must be running. \\ \\
-                    Post-Conditions & The modulation subsystem will stop modulating incoming audio. \\ \\
-                    Assumptions & An incoming audio signal exists.\\ \\
+                    & An effect must be running. \\ \hline
+                    Post-Conditions & The modulation subsystem will stop modulating incoming audio. \\ \hline
+                    Assumptions & An incoming audio signal exists.\\ \hline
                 \end{tabular}
-                % \\
-                % \caption{Use case: Stop effect}
-                % \label{tab:uc-stop-effect}
+                \\
+                \caption{Use case: Stop effect}
+                \label{tab:uc-stop-effect}
             \end{table}
             
 \clearpage
@@ -252,7 +260,7 @@
     \subsubsection{UML component diagram}
         \begin{figure}[!ht]
             \centering
-            \includegraphics{diagrams/component-diagram.JPG}
+            \includegraphics{diagrams/component-diagram-revised.jpeg}
             \caption{Component diagram}
             \label{fig:component}
         \end{figure}
@@ -280,8 +288,8 @@
 \subsection{Interface viewpoint}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=.5\textwidth]{diagrams/pedal-diagram.png}
-    \caption{Rough design diagram for the final product}
+    \includegraphics[width=.75\textwidth]{diagrams/DAMPedalDesign.png}
+    \caption{Design for the final product}
     \label{fig:pedal diagram}
 \end{figure}
 
@@ -299,7 +307,7 @@
     \subsubsection{Audio Modulation System UML sequence diagram}
         \begin{figure}[!ht]
             \centering
-            \includegraphics[width=.75\textwidth]{diagrams/modulation-interaction.jpeg}
+            \includegraphics[width=.45\textwidth]{diagrams/modulation-interaction-revised.jpeg}
             \caption{Audio Modulation System sequence diagram}
             \label{fig:modulation}
         \end{figure}

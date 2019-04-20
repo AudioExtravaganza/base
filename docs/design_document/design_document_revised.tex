@@ -1,0 +1,106 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{cite}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{graphics}
+\usepackage{multirow}
+
+\geometry{textheight=9.5in, textwidth=7in}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+% 1. Fill in these details
+\def \CapstoneTeamName{Audio Extravaganza}
+\def \CapstoneTeamNumber{26}
+\def \GroupMemberOne{Martin Barker}
+\def \GroupMemberTwo{Devon Cash}
+\def \GroupMemberThree{Alexander Niebur}
+\def \GroupMemberFour{Mason Sidebottom}
+\def \GroupMemberFive{Ben Windheim}
+\def \CapstoneProjectName{Audio Extravaganza}
+\def \CapstoneSponsorCompany{Oregon State University}
+\def \CapstoneSponsorPerson{Kirsten Winters}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		
+                %Problem Statement
+				% Requirements Document
+				%Technology Review
+				Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+        \hfill  
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+                \NameSigPair{\GroupMemberFour}\par
+                \NameSigPair{\GroupMemberFive}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+            The Audio Extravaganza project aims to build a modulation and looping pedal that is affordable, intuitive, and effective. This document lays out the design for the pedal. Starting with an overview of the projects scope, purpose and intended audience. Next, the conceptual model for the software design will be covered. Then viewpoints used to define our design will then be covered. Finally, the design itself from the viewpoints listed will be defined. 
+		\end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+
+% Uncomment to make table of contents full page
+\clearpage
+
+% 8. now you write!
+
+\clearpage
+
+\input{changes.tex}
+
+\clearpage
+
+\input{overview.tex}
+% \input{definitions.tex}
+\input{conceptual.tex}
+\input{design_desc.tex}
+\input{design_view.tex}
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{./refs.bib}
+
+
+\end{document}

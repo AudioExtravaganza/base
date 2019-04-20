@@ -60,7 +60,7 @@
     
     \subsubsection{Dependency viewpoint}
         This viewpoint describes how entities are connected and how they should share resources.
-        Hardware and software entities will share power, audio, and input/output resources. Therefore computationally intensity should be considered when designing the audio effects and software for our board, as we don't want to end up in a position where throttled computational power limits our progress. Power draw for our operating system, wireless external interface transmission, and input/output interaction will need to operate together seamlessly. Utilizing our boards audio card will also be important to ensure that resources are allocated in a fair and efficient way, such that a simple low pass filter is not being repeated for each effect. The software effects code should be modularized whenever possible. 
+        Hardware and software entities will share power, audio, and input/output resources. Therefore computationally intensity should be considered when designing the audio effects and software for our board, as we don't want to end up in a position where throttled computational power limits our progress. Power draw for our operating system, wireless external interface transmission, and input/output interaction will need to operate together seamlessly. Utilizing our board's audio card will also be important to ensure that resources are allocated in a fair and efficient way, such that a simple low pass filter is not being repeated for each effect. The software effects code should be modularized whenever possible. 
         The notation used to describe this viewpoint will be UML package diagrams.
 
         
@@ -104,7 +104,6 @@
         
     \subsubsection{Interface viewpoint}
         The interface viewpoint describes how users can expect to interact with the object.
-        In order for information designers, programmers, and testers to correctly use services provided by our design, we will take feedback from user testing and make decisions on how usable our interface is. As well as provide a simple visual set of instructions to help new users use our device.
         This will be described with a mock-up of the physical interface.
 
         
