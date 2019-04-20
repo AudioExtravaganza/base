@@ -11,10 +11,10 @@ One stretch goal of our project is to implement an external mobile interface whi
     \begin{enumerate}[label=\alph*.]
         \item The system shall convert all incoming audio signals to a digital signal via DAC (\ref{DAC}). % This may fall under hardware
         \item The system shall convert all outgoing audio signals to an analog signal via DAC (\ref{DAC}).
-        \item The system shall allow input from external devices, like a MIDI (\ref{MIDI}) controller, via USB.
         \item The system shall map a function to each hardware interface.
         \item The system shall display pertinent information via an LCD (\ref{LCD}) screen.
         \item The system shall start all subsystems on power up.
+
     \end{enumerate}
     
     \subsubsection{Looping Sub System}
@@ -22,15 +22,8 @@ One stretch goal of our project is to implement an external mobile interface whi
             \item The system shall allow users to start and stop recording input via a pedal.
             \item The system shall allow users to start and stop playback via a pedal interface.
             \item The system shall allow users to toggle recording or playback via a pedal.
-            \item The system shall alert users of the state of each playback bank via an indicator LED (\ref{LED}).
             %Can change # here
-            \item The system shall cache up to 4 recordings, for toggling with pedals.
-            
-            \item The system shall allow users to save recording presets for retrieval later.
-            %   Maybe
-            \item The system shall allow users to select an interval in beats per minute to quantize recordings.
-            % Similar to a launch pad behavior
-            \item The system shall allow users the queue output to play on the next measured interval.
+
 
         \end{enumerate}
     
@@ -39,7 +32,6 @@ One stretch goal of our project is to implement an external mobile interface whi
         \item The system shall allow users to select effects to toggle for each pedal.
         \item The system shall allow users to load effect presets.
         \item The system shall allow users to modify effect parameters.
-        \item The system shall allow users to save modifications as a preset.
     \end{enumerate}
     
     \subsubsection{Stretch Functionality}
@@ -48,6 +40,14 @@ One stretch goal of our project is to implement an external mobile interface whi
         \item The user shall be able to upload their effects and patches from an external device.
         \item The user shall be able to download saved looper recordings as files to an external device.
         \item The user shall be able to upload recordings from an external device.
+        \item The system shall allow input from external devices, like a MIDI (\ref{MIDI}) controller, via USB.
+        \item The system shall cache up to 4 recordings, for toggling with pedals.
+     \item The system shall allow users to save recording presets for retrieval later.
+            %   Maybe
+     \item The system shall allow users to select an interval in beats per minute to quantize recordings.
+            % Similar to a launch pad behavior
+    \item The system shall allow users the queue output to play on the next measured interval.
+            \item The system shall allow users to save modifications as a preset.
     \end{enumerate}
 
 \subsection{Usability Requirements}
@@ -100,7 +100,7 @@ In the event that we can implement an external interface, it should follow simil
 % Ben and Mason
 % Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations
     \begin{enumerate}[label=\alph*.]
-        \item The monetary cost of the final product should be under \$200 USD to maintain its viability as a cheaper alternative.
+        \item The monetary cost of the final product should be under \$300 USD to maintain its viability as a cheaper alternative.
         \item The hardware input will be constrained by the number of GPIO (\ref{GPIO}) pins available on the board. Digital Audio Converter, and LCD display will use a fair amount for output.
         \item The number of concurrent effects will be constrained by the processing power of the single-board computer that is used.
         \item The size of the product will be constrained to portability standards.
