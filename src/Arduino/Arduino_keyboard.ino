@@ -24,52 +24,53 @@ void loop() {
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 97;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(3) == LOW) { //Knob 1 CW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 115;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(4) == LOW) { //Knob 2 CCW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 100;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(5) == LOW) { //Knob 2 CW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 102;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(6) == LOW) { //Knob 3 CCW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 103;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(7) == LOW) { //Knob 3 CW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 104;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(8) == LOW) { //Knob 4 CCW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 106;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else if (digitalRead(9) == LOW) { //Knob 4 CW
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
     buf[0] = 107;
     Serial.write(buf, 8);
-    delay(1000);                       // wait for a second
+    delay(10);                       // wait for a second
   }
   else {
     buf[0] = 0;
+    Serial.write(buf, 8);
     digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
   }
 }
