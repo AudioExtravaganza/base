@@ -147,7 +147,7 @@ DAMPedalController {
 		this.receivers.add("GUI-Reciever" -> {
 			arg msg, time, addr;
 			// If this is the right handler
-
+			msg.println;
 			// Switch on the type
 			switch(msg[0],
 				// If knob, update knob bus
