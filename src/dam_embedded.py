@@ -138,7 +138,7 @@ async def init_main():
     global SERIAL_STATE
     server = AsyncIOOSCUDPServer(
         (ip, port), dispatcher, asyncio.get_event_loop())
-    client = udp_client.SimpleUDPClient("127.0.0.1", 1337)
+    client = udp_client.SimpleUDPClient("127.0.0.1", 57120)
     # Create datagram endpoint and start serving
     transport, protocol = await server.create_serve_endpoint()
 
