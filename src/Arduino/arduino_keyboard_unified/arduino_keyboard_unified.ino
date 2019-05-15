@@ -22,6 +22,7 @@ void setup() {
   pinMode(A0, INPUT_PULLUP); // Button 1
   pinMode(A1, INPUT_PULLUP); // Button 2
   pinMode(A2, INPUT_PULLUP); // Button 3
+
 }
 
 // the loop function runs over and over again forever

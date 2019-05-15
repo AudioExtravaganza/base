@@ -1,11 +1,12 @@
 import argparse
-import threading
 import asyncio
 import logging
+import time
+import json
 from datetime import datetime
 from serial import Serial
 
-from pythonosc import osc_message_builder
+from pythonosc import osc_message_builder, udp_client
 from pythonosc import udp_client
 from pythonosc.osc_server import AsyncIOOSCUDPServer
 from pythonosc.dispatcher import Dispatcher
@@ -15,7 +16,14 @@ logging.basicConfig(
     format='%(levelname)s - %(message)s'
 )
 
+SERVER_IP = "127.0.0.1"
+SERVER_PORT = 1337
+
 SERIAL_STATE = 0
+SC_SERVER_STATE = None
+SERVER_HNDSHK = None
+WINDOW = None
+
 
 class Knob:
     def __init__(self, control_id, serial_a, serial_b, osc_client):
@@ -26,24 +34,28 @@ class Knob:
 
         self.value = 0
 
-        logging.debug(f"Created Knob {control_id}; {1 << control_id:016b}")
+        logging.debug("Created Knob {}; {:016b}".format(control_id, 1<<control_id))
 
     def handle_state(self, state):
         cw = int(1 << self.serial_b & state > 0)
         ccw = int(1 << self.serial_a & state > 0)
 
         # Pulse has not occured
-        if not (cw or ccw): return
-        
+        if not (cw or ccw):
+            return
+
+        logging.debug("Got Pulse")
+
         # Update state
         self.set_state(1 if cw else -1)
 
     def set_state(self, val):
         self.value += val
         self._client.send_message('/knob', [self.control_id, self.value])
-        logging.debug(f"MSG: ['/knob', [{self.control_id}, {self.value}]")
+        logging.debug("MSG: ['/knob', [{}, {}]".format(self.control_id, self.value))
 
-class MenuKnob(Knob): 
+
+class MenuKnob(Knob):
     def __init__(self, serial_a, serial_b, osc_client):
         Knob.__init__(self, 0, serial_a, serial_b, osc_client)
 
@@ -51,6 +63,7 @@ class MenuKnob(Knob):
         direction = 'left' if val == -1 else 'right'
         self._client.send_message('/menu', [direction])
         logging.debug(f"MSG: ['/menu', [{direction}]")
+
 
 class Footswitch:
     def __init__(self, control_id, serial_address, osc_client):
@@ -110,37 +123,46 @@ class Footswitch:
 
 
 def echo_test(address, *args):
-    print(f"{address}: {args}")
+    print("{}: {}".format(address, args))
 
 
-dispatcher = Dispatcher()
-dispatcher.map("/*", echo_test)
-
-ip = "127.0.0.1"
-port = 1337
+def handle_server_state(address, *args):
+    global SC_SERVER_STATE, WINDOW
+    SC_SERVER_STATE = json.loads(args[0])
 
 
-async def loop(controls, serial):
-    global SERIAL_STATE
-    while True:
-        if(serial.inWaiting() > 0):
-            cc = serial.readline()
-            SERIAL_STATE = cc[0] << 8 | cc[1]
-            # logging.debug(f"{STATE:016b}")
+def confirm_subscription(address, *args):
+    global SERVER_HNDSHK
+    print("Recieved handshake from language at {}".format(args[0]))
+    SERVER_HNDSHK = True
 
-        for k, c in controls.items():
-            c.handle_state(SERIAL_STATE)
 
-        await asyncio.sleep(0)
+def init_gui():
+    global WINDOW
+    WINDOW = sg.Window('DAM Pedal', [[sg.Text('', key="_OUTPUT_")]])
+    print(WINDOW)
+
+
+async def init_server():
+    global SERVER_IP, SERVER_PORT
+    dispatcher = Dispatcher()
+    # dispatcher.map("/*", echo_test)
+    dispatcher.map("/state", handle_server_state)
+    dispatcher.map("/sub*", confirm_subscription)
+
+    server = AsyncIOOSCUDPServer(
+        (SERVER_IP, SERVER_PORT), dispatcher, asyncio.get_event_loop())
+    # Create datagram endpoint and start serving
+    return await server.create_serve_endpoint()
 
 
 async def init_main():
-    global SERIAL_STATE
-    server = AsyncIOOSCUDPServer(
-        (ip, port), dispatcher, asyncio.get_event_loop())
+    global SERIAL_STATE, SERVER_HNDSHK
+
+    # init_gui()
+
+    transporter, _ = await init_server()
     client = udp_client.SimpleUDPClient("127.0.0.1", 57120)
-    # Create datagram endpoint and start serving
-    transport, protocol = await server.create_serve_endpoint()
 
     controls = {
         "Pedal1": Footswitch(0, 0, client),
@@ -153,11 +175,29 @@ async def init_main():
         "Menu": MenuKnob(11, 12, client),
     }
 
+    # while SERVER_HNDSHK is None:
+    #     client.send_message('/sub', port)
+    #     await asyncio.sleep(1)
+
     SERIAL_STATE = 0
     # Enter main loop of program
     await loop(controls,  serial=Serial('/dev/tty.usbmodem14201'))
 
-    transport.close()  # Clean up serve endpoint
+    transporter.close()  # Clean up serve endpoint
 
+async def loop(controls, serial):
+    global SERIAL_STATE, SC_SERVER_STATE, WINDOW
+    while True:
+        # Get Serial Data
+        if(serial.inWaiting() > 0):
+            cc = serial.readline()
+            SERIAL_STATE = cc[0] << 8 | cc[1]
+            # logging.debug("{:016b}".format(SERIAL_STATE))
 
-asyncio.run(init_main())
+        for k, c in controls.items():
+            c.handle_state(SERIAL_STATE)
+
+        await asyncio.sleep(0)
+
+_loop = asyncio.get_event_loop()
+_loop.run_until_complete(init_main())
