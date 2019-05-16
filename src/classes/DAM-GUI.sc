@@ -164,6 +164,12 @@ DAMComponent{
 		this.component.free;
 		this.dispatcher.free;
 	}
+
+	updateGUI {
+		arg newVal;
+		this.component.value = newVal;
+		this.component.valueAction = newVal;
+	}
 }
 
 
@@ -271,6 +277,16 @@ DAMMenu : DAMComponent {
 				// Send the action function parameters in form
 				//	(name, [index, menu_item])
 				func.value(this.getName(), [m.value, this.items.at(m.value)]);
+			};
+		};
+	}
+
+	updateGUI {
+		arg val;
+		this.items.do{
+			arg item, i;
+			if(val == item){
+				this.component.valueAction = i;
 			};
 		};
 	}
@@ -631,6 +647,7 @@ DAMGUI {
 			};
 		};
 
+
 		this.win.view.keyDownAction = {
 			arg view, char, mod, uni, keycode, key;
 			var hold, off, holdM, offM;
@@ -718,6 +735,24 @@ DAMGUI {
 
 		// Create new list of actions to go through on close
 		this.freeActions = List(0);
+
+		// Update GUI from OSC
+		if(useOSC == false){
+			thisProcess.addOSCRecvFunc({
+				arg msg, time, addr;
+				// Switch on the type
+				switch(msg[0],
+					// If knob, update knob bus
+					'/knob', {this.knobs[msg[1]].updateGUI(msg[2]);},
+
+					// If pedal, update pedal state
+					'/pedal', {this.pedals[msg[1]].updateGUI(msg[2]);},
+
+					// If menu, update menu string
+					'/menu', {this.menu.updateGUI(msg[1]);}
+				);
+			});
+		}
 	}
 
 	/******************************************************************
