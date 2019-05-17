@@ -4,22 +4,21 @@ Server.default.options.numBuffers = 2048 * 32;
 ~src = thisProcess.nowExecutingPath.dirname;
 
 // Loads all scenes into a list called ~scenes
-(~src ++ "/resources/scenes.scd").load;
+(~src ++ "/resources/expo-scenes.scd").load;
 
 // Loads all synthdefs for effects into server
-(~src ++ "/resources/effects.scd").load;
+(~src ++ "/resources/expo-effects.scd").load;
 
 
 s.waitForBoot({
 	// Debugging on, send data over OSC
 	g = DAMGUI.new();
-	g.build(false, true);
+	g.build(true, true);
 
 	// Setup the server
 	c = DAMPedalController.new();
 	c.build(s);
 
-	// For all scenes in scenes.scd
 	~scenes.do{
 		arg item;
 		// Add to the GUI
